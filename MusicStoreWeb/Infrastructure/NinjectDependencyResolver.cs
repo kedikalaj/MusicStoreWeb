@@ -6,7 +6,6 @@ using Moq;
 using Ninject;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
-
 namespace MusicStoreWeb.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver
@@ -21,6 +20,7 @@ namespace MusicStoreWeb.Infrastructure
         {
             return kernel.TryGet(serviceType);
         }
+
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return kernel.GetAll(serviceType);
@@ -29,19 +29,11 @@ namespace MusicStoreWeb.Infrastructure
         {
             Mock<ISongsRepository> mock = new Mock<ISongsRepository>();
             mock.Setup(m => m.Songs).Returns(new List<Song> {
-            new Song { Name = "Never Gonna Give You Up", Price = 25 },
-            new Song { Name = "This Fffire", Price = 179 },
-            new Song { Name = "Morbius Theme 10h", Price = 95 }
-            });
+                new Song { Name = "Football", Price = 25 },
+                new Song { Name = "Surf board", Price = 179 },
+                new Song { Name = "Running shoes", Price = 95 }
+                });
             kernel.Bind<ISongsRepository>().ToConstant(mock.Object);
         }
-
-        private static void RegisterServices(IKernel kernel)
-        {
-            System.Web.Mvc.DependencyResolver.SetResolver(new
-            MusicStoreWeb.Infrastructure.NinjectDependencyResolver(kernel));
-        }
-
-
     }
 }
