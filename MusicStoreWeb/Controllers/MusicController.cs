@@ -16,7 +16,7 @@ namespace SportsStore.WebUI.Controllers
         }
         public ViewResult List()
         {
-            return View(repository.Songs);
+            return View(repository.Songs.ToList());
         }
     }
 }

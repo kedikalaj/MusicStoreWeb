@@ -1,12 +1,19 @@
 ﻿@using MusicStore.Domain.Entities
-@model IEnumerable<Song>
+@model List<Song>
 @{
     ViewBag.Title = "Songs";
+    
 }
-@foreach (var p in Model)
+<p>out of for loop</p>
+
+@foreach (var s in Model)
 {
     <div>
-        <h3>@p.Name</h3>
-        <h4>@p.Price.ToString("c")</h4>
+        <h3>@s.Name</h3>
+            @s.Author
+        <h4>@s.Price.ToString("c")</h4>
+        
     </div>
+
 }
+<p>end of loop</p>
