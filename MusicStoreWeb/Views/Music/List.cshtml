@@ -5,17 +5,20 @@
 
 }
 
-@foreach (var s in Model.Songs)
+@foreach (var p in Model.Songs)
 {
-    <div>
-        <h3>@s.Name</h3>
-        @s.Author
-        <h4>@s.Price.ToString("c")</h4>
-
+    <div class="well">
+        <h3>
+            <strong>@p.Name</strong>
+            <span class="pull-right label label-primary">@p.Price.ToString("c")</span>
+        </h3>
+        <span class="lead"> @p.Author</span>
     </div>
-
 }
+<div class="btn-group pull-right">
 
-<div>
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
-</div>
+    
+
+    <div>
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+    </div>
