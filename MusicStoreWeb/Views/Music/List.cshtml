@@ -1,19 +1,21 @@
-﻿@using MusicStore.Domain.Entities
-@model List<Song>
+﻿@model MusicStoreWeb.Models.SongsListViewModel
+
 @{
     ViewBag.Title = "Songs";
-    
-}
-<p>out of for loop</p>
 
-@foreach (var s in Model)
+}
+
+@foreach (var s in Model.Songs)
 {
     <div>
         <h3>@s.Name</h3>
-            @s.Author
+        @s.Author
         <h4>@s.Price.ToString("c")</h4>
-        
+
     </div>
 
 }
-<p>end of loop</p>
+
+<div>
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+</div>
