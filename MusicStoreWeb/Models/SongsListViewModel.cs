@@ -8,5 +8,7 @@ namespace MusicStoreWeb.Models
     {
         public IEnumerable<Song> Songs { get; set; }
         public PagingInfo PagingInfo { get; set; }
+
+        public string CurrentCategory { get; set; }
     }
 }
