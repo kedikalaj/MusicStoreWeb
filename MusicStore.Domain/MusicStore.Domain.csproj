@@ -81,6 +81,7 @@
     <Compile Include="Abstract\ISongsRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFSongRepostory.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
