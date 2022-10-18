@@ -13,44 +13,38 @@ namespace MusicStoreWeb.Controllers
         {
             repository = repo;
         }
-        public RedirectToRouteResult AddToCart(int songId, string returnUrl)
+        public ViewResult Index(Cart cart, string returnUrl)
+        {
+            return View(new CartIndexViewModel
+            {
+                ReturnUrl = returnUrl,
+                Cart = cart
+            });
+        }
+        public RedirectToRouteResult AddToCart(Cart cart, int songId, string returnUrl)
         {
             Song product = repository.Songs
             .FirstOrDefault(p => p.SongID == songId);
             if (product != null)
             {
-                GetCart().AddItem(product, 1);
+                cart.AddItem(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
-        public RedirectToRouteResult RemoveFromCart(int productId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int songId, string returnUrl)
         {
             Song product = repository.Songs
-            .FirstOrDefault(p => p.SongID == productId);
+            .FirstOrDefault(p => p.SongID == songId);
             if (product != null)
             {
-                GetCart().RemoveLine(product);
+                cart.RemoveLine(product);
             }
 
-        return RedirectToAction("Index", new { returnUrl });
+            return RedirectToAction("Index", new { returnUrl });
         }
-        private Cart GetCart()
+        public PartialViewResult Summary(Cart cart)
         {
-            Cart cart = (Cart)Session["Cart"];
-            if (cart == null)
-            {
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
-            return cart;
-        }
-        public ViewResult Index(string returnUrl)
-        {
-            return View(new CartIndexViewModel
-            {
-                Cart = GetCart(),
-                ReturnUrl = returnUrl
-            });
+            return PartialView(cart);
         }
     }
 }

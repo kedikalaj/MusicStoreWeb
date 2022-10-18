@@ -43,12 +43,14 @@ namespace MusicStore.Domain.Entities
         {
             get { return lineCollection; }
         }
+
     }
     public class CartLine
     {
         public Song Product { get; set; }
         public int Quantity { get; set; }
     }
+
 }
 
 
