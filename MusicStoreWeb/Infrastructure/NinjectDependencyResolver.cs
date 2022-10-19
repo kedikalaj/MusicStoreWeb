@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
 using System.Web.Mvc;
 using Moq;
 using Ninject;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
 using MusicStore.Domain.Concrete;
+using SportsStore.Domain.Concrete;
 
 namespace MusicStoreWeb.Infrastructure
 {
@@ -29,16 +30,14 @@ namespace MusicStoreWeb.Infrastructure
         }
         private void AddBindings()
         {
-           
-            Mock<ISongsRepository> mock = new Mock<ISongsRepository>();
-            mock.Setup(m => m.Songs).Returns(new List<Song> {
-                new Song { Name = "This fffire", Price = 25 },
-                new Song { Name = "Surf board", Price = 179 },
-                new Song { Name = "Morbius theme 10h", Price = 999995 }
-                });
-
-
             kernel.Bind<ISongsRepository>().To<EFSongRepository>();
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager
+            .AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
+            .WithConstructorArgument("settings", emailSettings);
         }
     }
 }
