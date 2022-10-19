@@ -14,13 +14,16 @@ namespace MusicStoreWeb.Controllers
         }
         public PartialViewResult Menu(string category = null)
         {
+            
             ViewBag.SelectedCategory = category;
 
             IEnumerable<string> categories = repository.Songs
             .Select(x => x.Genre)
            .Distinct()
            .OrderBy(x => x);
-        return PartialView(categories);
+
+                return PartialView("FlexMenu", categories);
+
         }
     }
 }

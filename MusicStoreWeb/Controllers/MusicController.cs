@@ -23,9 +23,9 @@ namespace SportsStore.WebUI.Controllers
             {
                 Songs = repository.Songs
                 .Where(p => category == null || p.Genre == category)
-            .OrderBy(p => p.SongID)
-            .Skip((page - 1) * PageSize)
-            .Take(PageSize), PagingInfo = new PagingInfo{
+                .OrderBy(p => p.SongID)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize), PagingInfo = new PagingInfo{
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                 TotalItems = category == null ?
@@ -37,6 +37,7 @@ namespace SportsStore.WebUI.Controllers
             };
 
             return View(model);
+    } 
+
     }
-}
 }
