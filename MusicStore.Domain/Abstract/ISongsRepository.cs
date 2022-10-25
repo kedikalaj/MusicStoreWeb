@@ -8,6 +8,7 @@ namespace MusicStore.Domain.Abstract
     public interface ISongsRepository
     {
         IEnumerable<Song> Songs { get; }
+        void SaveProduct(Song product);
 
     }
 

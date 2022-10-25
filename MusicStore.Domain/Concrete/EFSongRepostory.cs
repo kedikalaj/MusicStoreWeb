@@ -16,5 +16,26 @@ namespace MusicStore.Domain.Concrete
         {
             get { return context.Songs; }
         }
+        public void SaveProduct(Song product)
+        {
+            if (product.SongID == 0)
+            {
+                context.Songs.Add(product);
+            }
+            else
+            {
+                Song dbEntry = context.Songs.Find(product.SongID);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = product.Name;
+                    dbEntry.Author = product.Author;
+                    dbEntry.Price = product.Price;
+                    dbEntry.Genre = product.Genre;
+                    dbEntry.Length = product.Length;
+                }
+            }
+            context.SaveChanges();
+        }
+                
     }
 }

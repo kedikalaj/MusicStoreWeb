@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MusicStore.Domain.Abstract;
-using System.Linq;
+
 using MusicStore.Domain.Entities;
 
 namespace MusicStoreWeb.Controllers
@@ -20,11 +20,25 @@ namespace MusicStoreWeb.Controllers
         {
             return View(repository.Songs);
         }
-        public ViewResult Edit(int SongsId)
+        public ViewResult Edit(int? SongID)
         {
-            Song product = repository.Songs
-            .FirstOrDefault(p => p.SongID == SongsId);
+            Song song = repository.Songs
+            .FirstOrDefault(p => p.SongID == SongID);
+            return View(song);
+        }
+        [HttpPost]
+        public ActionResult Edit(Song product)
+        {
+            if (ModelState.IsValid)
+            {
+                repository.SaveProduct(product);
+                TempData["message"] = string.Format("{0} has been saved", product.Name);
+                return RedirectToAction("Index");
+            }
+            else
+            {
             return View(product);
+            }
         }
     }
 }
