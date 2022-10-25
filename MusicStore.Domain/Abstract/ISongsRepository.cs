@@ -9,6 +9,7 @@ namespace MusicStore.Domain.Abstract
     {
         IEnumerable<Song> Songs { get; }
         void SaveProduct(Song product);
+        Song DeleteProduct(int productID);
 
     }
 

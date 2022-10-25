@@ -36,6 +36,16 @@ namespace MusicStore.Domain.Concrete
             }
             context.SaveChanges();
         }
-                
+        public Song DeleteProduct(int productID)
+        {
+            Song dbEntry = context.Songs.Find(productID);
+            if (dbEntry != null)
+            {
+                context.Songs.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
     }
 }
