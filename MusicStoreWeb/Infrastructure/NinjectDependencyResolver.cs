@@ -8,6 +8,7 @@ using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
 using MusicStore.Domain.Concrete;
 using SportsStore.Domain.Concrete;
+using SportsStore.WebUI.Infrastructure.Concrete;
 
 namespace MusicStoreWeb.Infrastructure
 {
@@ -38,6 +39,7 @@ namespace MusicStoreWeb.Infrastructure
             };
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>()
             .WithConstructorArgument("settings", emailSettings);
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
     }
 }

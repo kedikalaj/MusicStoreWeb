@@ -9,6 +9,7 @@ using MusicStore.Domain.Entities;
 
 namespace MusicStoreWeb.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private ISongsRepository repository;
