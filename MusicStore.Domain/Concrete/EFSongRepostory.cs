@@ -32,7 +32,10 @@ namespace MusicStore.Domain.Concrete
                     dbEntry.Price = product.Price;
                     dbEntry.Genre = product.Genre;
                     dbEntry.Length = product.Length;
+                    dbEntry.ImageData = product.ImageData;
+                    dbEntry.ImageMimeType = product.ImageMimeType;
                 }
+
             }
             context.SaveChanges();
         }

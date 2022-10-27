@@ -37,7 +37,20 @@ namespace SportsStore.WebUI.Controllers
             };
 
             return View(model);
-    } 
+    }
+        public FileContentResult GetImage(int SongId)
+        {
+            Song prod = repository.Songs
+            .FirstOrDefault(p => p.SongID == SongId);
+            if (prod != null)
+            {
+                return File(prod.ImageData, prod.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
     }
 }
