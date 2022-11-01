@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <div class="panel">
     <div class="panel-heading">
         <h3>Edit @Model.Name</h3>
@@ -43,15 +44,14 @@
             <div class="form-group">
                 <div style="position:relative;">
                     <label>Image</label>
-                    <a class='btn' href='javascript:;'>
+                    <a class='btn'>
                         Choose File...
                         <input type="file" name="Image" size="40"
-                               style="position:absolute;z-index:2;top:0;
- left:0;filter: alpha(opacity=0); opacity:0;
-background-color:transparent;color:transparent;"
+                               style="position:absolute;z-index:2;top:0; left:0;
+                               filter: alpha(opacity=0); opacity:0; background-color:transparent;color:transparent;"
                                onchange='$("#upload-file-info").html($(this).val());'>
                     </a>
-                    <span class='label label-info' id="upload-file-info"></span>
+                    <span class='label label-info'  id="upload-file-info"></span>
                 </div>
                 @if (Model.ImageData == null)
                 {
@@ -60,9 +60,8 @@ background-color:transparent;color:transparent;"
                 }
                 else
                 {
-                    <img class="img-thumbnail" width="150" height="150"
-                         src="@Url.Action("GetImage", "Product",
-new { Model.SongID })" />
+            <img class="img-thumbnail" width="150" height="150"
+                 src="@Url.Action("GetImage", "Music", new {Model.SongID})" />
                 }
             </div>
         </div>
