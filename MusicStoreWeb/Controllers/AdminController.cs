@@ -31,23 +31,38 @@ namespace MusicStoreWeb.Controllers
         [HttpPost]
         public ActionResult Edit(Song product, HttpPostedFileBase image = null)
         {
-            if (ModelState.IsValid)
+
+
             {
-                if (image != null)
+                var list = new List<string>() { "Pop", "Rock" };
+                ViewBag.list = list;
+                ViewBag.list = list.ToList();
+
+
+
+                if (ModelState.IsValid)
                 {
-                    product.ImageMimeType = image.ContentType;
-                    product.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(product.ImageData, 0, image.ContentLength);
+                    if (image != null)
+                    {
+                        product.ImageMimeType = image.ContentType;
+                        product.ImageData = new byte[image.ContentLength];
+                        image.InputStream.Read(product.ImageData, 0, image.ContentLength);
+                    }
+                    repository.SaveProduct(product);
+                    TempData["message"] = string.Format("{0} has been saved", product.Name);
+                    return RedirectToAction("Index");
                 }
-                repository.SaveProduct(product);
-                TempData["message"] = string.Format("{0} has been saved", product.Name);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-            return View(product);
+                else
+                {
+
+
+                    return View(product);
+
+                }
+
             }
         }
+
         public ViewResult Create()
         {
             return View("Edit", new Song());
@@ -63,5 +78,17 @@ namespace MusicStoreWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
+    }
+    public class Genres
+    {
+        public Genre Genress { get; set; }
+    }
+
+    public enum Genre
+    {
+        Pop,
+        Rock
     }
 }

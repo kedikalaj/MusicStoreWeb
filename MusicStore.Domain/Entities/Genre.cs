@@ -10,23 +10,23 @@ using MusicStore.Domain.Entities;
 
 namespace MusicStore.Domain.Entities
 {
-    public class Song
+    public class Genre
     {
-        [HiddenInput(DisplayValue = false)]
+
         [Key]
-        public int SongID { get; set; }
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
-        public string Genre { get; set; }
+        public int GenreID { get; set; }
+        public String GenreName { get; set; }
+ 
+
+
+        [ForeignKey("GenreID")]
+        public virtual Song Song { get; set; }
+
+
         //public int GenreId { get; set; }
         //[ForeignKey("GenreId")]
         //public virtual Genre Genre { get; set; }
-        public int Length { get; set; }
-        public byte[] ImageData { get; set; }
-        public string ImageMimeType { get; set; }
 
 
-       
     }
 }

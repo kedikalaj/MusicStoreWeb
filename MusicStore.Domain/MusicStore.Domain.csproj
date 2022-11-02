@@ -85,11 +85,24 @@
     <Compile Include="Concrete\EFSongRepostory.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Entities\Song.cs" />
     <Compile Include="Migrations\202210271542528_AddedSongsTable.cs" />
     <Compile Include="Migrations\202210271542528_AddedSongsTable.designer.cs">
       <DependentUpon>202210271542528_AddedSongsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211012144118_AddedGenresTable.cs" />
+    <Compile Include="Migrations\202211012144118_AddedGenresTable.designer.cs">
+      <DependentUpon>202211012144118_AddedGenresTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211012153308_AddedGenresTable1.cs" />
+    <Compile Include="Migrations\202211012153308_AddedGenresTable1.designer.cs">
+      <DependentUpon>202211012153308_AddedGenresTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211012155422_genres tables.cs" />
+    <Compile Include="Migrations\202211012155422_genres tables.designer.cs">
+      <DependentUpon>202211012155422_genres tables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,7 +121,17 @@
     <EmbeddedResource Include="Migrations\202210271542528_AddedSongsTable.resx">
       <DependentUpon>202210271542528_AddedSongsTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211012144118_AddedGenresTable.resx">
+      <DependentUpon>202211012144118_AddedGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211012153308_AddedGenresTable1.resx">
+      <DependentUpon>202211012153308_AddedGenresTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211012155422_genres tables.resx">
+      <DependentUpon>202211012155422_genres tables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
