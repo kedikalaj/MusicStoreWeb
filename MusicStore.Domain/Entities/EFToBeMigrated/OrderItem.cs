@@ -10,20 +10,16 @@ using MusicStore.Domain.Entities;
 
 namespace MusicStore.Domain.Entities
 {
-    public class Song
+    public class OrderItem
     {
-        [HiddenInput(DisplayValue = false)]
         [Key]
+        public int OrderID { get; set; }
         public int SongID { get; set; }
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
-        public string Genre { get; set; }
+        public int Quantity { get; set; }
 
-        public int Length { get; set; }
-        public byte[] ImageData { get; set; }
-        public string ImageMimeType { get; set; }
+        [ForeignKey("SongID")]
 
+        public virtual Song Song{ get; set; }
 
     }
 }

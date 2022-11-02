@@ -85,6 +85,13 @@
     <Compile Include="Concrete\EFSongRepostory.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Genres.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Order.cs" />
+    <Compile Include="Entities\EFToBeMigrated\OrderItem.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Role.cs" />
+    <Compile Include="Entities\EFToBeMigrated\ShippingDetail.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Songs.cs" />
+    <Compile Include="Entities\EFToBeMigrated\User.cs" />
     <Compile Include="Entities\Genre.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Entities\Song.cs" />

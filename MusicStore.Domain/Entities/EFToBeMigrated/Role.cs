@@ -10,19 +10,16 @@ using MusicStore.Domain.Entities;
 
 namespace MusicStore.Domain.Entities
 {
-    public class Song
+    public class Role
     {
-        [HiddenInput(DisplayValue = false)]
         [Key]
-        public int SongID { get; set; }
+        public int RoleID { get; set; }
         public string Name { get; set; }
-        public string Author { get; set; }
-        public decimal Price { get; set; }
-        public string Genre { get; set; }
 
-        public int Length { get; set; }
-        public byte[] ImageData { get; set; }
-        public string ImageMimeType { get; set; }
+
+
+
+        public virtual User User{ get; set; }
 
 
     }
