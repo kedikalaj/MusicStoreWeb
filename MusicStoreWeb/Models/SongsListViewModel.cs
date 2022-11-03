@@ -6,7 +6,7 @@ namespace MusicStoreWeb.Models
 {
     public class SongsListViewModel
     {
-        public IEnumerable<Song> Songs { get; set; }
+        public IEnumerable<Songs> Songs { get; set; }
         public PagingInfo PagingInfo { get; set; }
 
         public string CurrentCategory { get; set; }

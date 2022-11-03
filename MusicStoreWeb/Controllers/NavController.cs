@@ -17,10 +17,10 @@ namespace MusicStoreWeb.Controllers
             
             ViewBag.SelectedCategory = category;
 
-            IEnumerable<string> categories = repository.Songs
+            IEnumerable<MusicStore.Domain.Entities.Genres> categories = repository.Songs
             .Select(x => x.Genre)
            .Distinct()
-           .OrderBy(x => x);
+           .OrderBy(x => x).AsEnumerable();
 
                 return PartialView("FlexMenu", categories);
 

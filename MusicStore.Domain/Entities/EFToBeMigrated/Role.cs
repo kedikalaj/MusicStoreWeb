@@ -13,13 +13,8 @@ namespace MusicStore.Domain.Entities
     public class Role
     {
         [Key]
-        public int RoleID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-
-
-
-
-        public virtual User User{ get; set; }
 
 
     }

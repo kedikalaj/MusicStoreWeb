@@ -12,19 +12,19 @@ namespace MusicStore.Domain.Concrete
     public class EFSongRepository : ISongsRepository
     {
         public EFDbContext context = new EFDbContext();
-        public IEnumerable<Song> Songs
+        public IEnumerable<Songs> Songs
         {
             get { return context.Songs; }
         }
-        public void SaveProduct(Song product)
+        public void SaveProduct(Songs product)
         {
-            if (product.SongID == 0)
+            if (product.ID == 0)
             {
                 context.Songs.Add(product);
             }
             else
             {
-                Song dbEntry = context.Songs.Find(product.SongID);
+                Songs dbEntry = context.Songs.Find(product.ID);
                 if (dbEntry != null)
                 {
                     dbEntry.Name = product.Name;
@@ -39,9 +39,9 @@ namespace MusicStore.Domain.Concrete
             }
             context.SaveChanges();
         }
-        public Song DeleteProduct(int productID)
+        public Songs DeleteProduct(int productID)
         {
-            Song dbEntry = context.Songs.Find(productID);
+            Songs dbEntry = context.Songs.Find(productID);
             if (dbEntry != null)
             {
                 context.Songs.Remove(dbEntry);

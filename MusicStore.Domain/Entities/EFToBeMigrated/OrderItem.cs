@@ -13,13 +13,41 @@ namespace MusicStore.Domain.Entities
     public class OrderItem
     {
         [Key]
-        public int OrderID { get; set; }
+        public int ID { get; set; }
         public int SongID { get; set; }
         public int Quantity { get; set; }
+        public int OrderID { get; set; }
 
-        [ForeignKey("SongID")]
+        [ForeignKey("ID")]
 
-        public virtual Song Song{ get; set; }
+        public virtual Songs Song{ get; set; }
+        [ForeignKey("ID")]
+        public virtual Order Order { get; set; }
 
     }
+
+    //public void AddOrder(User user, ShippingDetail details, List<OrderItemModel> listOfOrderItems)
+    //{
+    //    Order order = new Order()
+    //    {
+    //        UserID = user.UserID,
+    //        ShipDetailsID = details.ShippingDetailsID,
+    //    };
+    //    _orderRepository.Add(order);
+    //    foreach(var item in listOfOrderItems)
+    //    {
+    //        OrderItem orderItem = new OrderItem()
+    //        {
+    //            SongID = item.SongID,
+    //            Quantity = item.Quantity,
+    //            OrderID = order.ID
+    //        };
+    //    }
+
+    //}
+    //public class OrderItemModel
+    //{
+    //    public int SongID { get; set; }
+    //    public int Quantity { get; set; }
+    //}
 }

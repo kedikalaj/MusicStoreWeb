@@ -14,7 +14,7 @@ namespace MusicStore.Domain.Entities
     {
         [HiddenInput(DisplayValue = false)]
         [Key]
-        public int SongID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public decimal Price { get; set; }
@@ -24,8 +24,8 @@ namespace MusicStore.Domain.Entities
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
 
-        [ForeignKey("GenreId")]
+        [ForeignKey("ID")]
 
-        public virtual Genre Genre { get; set; } 
+        public virtual Genres Genre { get; set; } 
     }
 }

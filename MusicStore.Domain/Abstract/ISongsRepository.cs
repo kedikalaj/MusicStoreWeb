@@ -7,9 +7,9 @@ namespace MusicStore.Domain.Abstract
 
     public interface ISongsRepository
     {
-        IEnumerable<Song> Songs { get; }
-        void SaveProduct(Song product);
-        Song DeleteProduct(int productID);
+        IEnumerable<Songs> Songs { get; }
+        void SaveProduct(Songs product);
+        Songs DeleteProduct(int productID);
 
     }
 

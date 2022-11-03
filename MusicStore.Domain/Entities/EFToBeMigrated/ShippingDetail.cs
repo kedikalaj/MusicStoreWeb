@@ -8,10 +8,10 @@ using System.ComponentModel.DataAnnotations;
     {
     public class ShippingDetail
     {
+        
+
+        public int ID { get; set; }
         [Required(ErrorMessage = "Please enter a name")]
-
-        public int ShippingDetailsID { get; set; }
-
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter the first address line")]
         [Display(Name = "Line 1")]

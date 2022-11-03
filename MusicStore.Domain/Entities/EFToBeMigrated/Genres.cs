@@ -14,11 +14,8 @@ namespace MusicStore.Domain.Entities
     {
 
         [Key]
-        public int GenreID { get; set; }
-        public String GenreName { get; set; }
-
-        [ForeignKey("GenreID")]
-        public virtual Song Song { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
 
 
 
