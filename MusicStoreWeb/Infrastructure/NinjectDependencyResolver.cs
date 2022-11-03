@@ -31,6 +31,7 @@ namespace MusicStoreWeb.Infrastructure
         }
         private void AddBindings()
         {
+            kernel.Bind<IGenresRepository>().To<EFGenresRepository>();
             kernel.Bind<ISongsRepository>().To<EFSongRepository>();
             EmailSettings emailSettings = new EmailSettings
             {

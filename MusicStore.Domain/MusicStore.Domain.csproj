@@ -85,11 +85,16 @@
     <Compile Include="Concrete\EFSongRepostory.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Cart.cs" />
-    <Compile Include="Entities\ShippingDetails.cs" />
-    <Compile Include="Entities\Song.cs" />
-    <Compile Include="Migrations\202210271542528_AddedSongsTable.cs" />
-    <Compile Include="Migrations\202210271542528_AddedSongsTable.designer.cs">
-      <DependentUpon>202210271542528_AddedSongsTable.cs</DependentUpon>
+    <Compile Include="Entities\EFToBeMigrated\Genres.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Order.cs" />
+    <Compile Include="Entities\EFToBeMigrated\OrderItem.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Role.cs" />
+    <Compile Include="Entities\EFToBeMigrated\ShippingDetail.cs" />
+    <Compile Include="Entities\EFToBeMigrated\Songs.cs" />
+    <Compile Include="Entities\EFToBeMigrated\User.cs" />
+    <Compile Include="Migrations\202211031703317_InitialDatabaseCreationMigration.cs" />
+    <Compile Include="Migrations\202211031703317_InitialDatabaseCreationMigration.designer.cs">
+      <DependentUpon>202211031703317_InitialDatabaseCreationMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,8 +110,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202210271542528_AddedSongsTable.resx">
-      <DependentUpon>202210271542528_AddedSongsTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211031703317_InitialDatabaseCreationMigration.resx">
+      <DependentUpon>202211031703317_InitialDatabaseCreationMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

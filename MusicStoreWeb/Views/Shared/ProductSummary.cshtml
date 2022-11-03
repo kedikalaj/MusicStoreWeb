@@ -9,8 +9,10 @@
  new { Model.SongID })" />
         </div>
     }
-
-
+    <h3>
+        <strong>@Model.Name</strong>
+        <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
+    </h3>
     @using (Html.BeginForm("AddToCart", "Cart"))
     {
         <div class="pull-right">
@@ -19,6 +21,5 @@
             <input type="submit" class="btn btn-success" value="Add to cart" />
         </div>
     }
-
     <span class="lead"> @Model.Author</span>
 </div>

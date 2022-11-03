@@ -1,6 +1,7 @@
-﻿@model MusicStore.Domain.Entities.Song
+﻿@model MusicStore.Domain.Entities.Songs
+@using MusicStoreWeb.Controllers
 @{
-    ViewBag.Title = "Admin: Edit " + @Model.Name;
+    //ViewBag.Title = "Admin: Edit " + @Model.Name;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -14,6 +15,9 @@
     {
         <div class="panel-body">
             @Html.HiddenFor(m => m.SongID)
+            @Html.HiddenFor(m => m.ImageMimeType)
+            @Html.HiddenFor(m => m.ImageData)
+
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 switch (property.PropertyName)
@@ -26,10 +30,9 @@
                     default:
                         <div class="form-group">
                             <label>@(property.DisplayName ?? property.PropertyName)</label>
-                            @if (property.PropertyName == "Author")
+                            @if (property.PropertyName == "Genre")
                             {
-                                @Html.TextArea(property.PropertyName, null,
-                                new { @class = "form-control", rows = 5 })
+                                @Html.DropDownListFor(m => m.Genre, new SelectList(Enum.GetValues(typeof(Genre))), "Select Genre")
                             }
                             else
                             {
@@ -51,17 +54,17 @@
                                filter: alpha(opacity=0); opacity:0; background-color:transparent;color:transparent;"
                                onchange='$("#upload-file-info").html($(this).val());'>
                     </a>
-                    <span class='label label-info'  id="upload-file-info"></span>
+                    <span class='label label-info' id="upload-file-info"></span>
                 </div>
                 @if (Model.ImageData == null)
                 {
                     <div class="form-control-static">No Image</div>
- 
+
                 }
                 else
                 {
-            <img class="img-thumbnail" width="150" height="150"
-                 src="@Url.Action("GetImage", "Music", new {Model.SongID})" />
+                    <img class="img-thumbnail" width="150" height="150"
+                         src="@Url.Action("GetImage", "Music", new {Model.SongID})" />
                 }
             </div>
         </div>

@@ -25,7 +25,7 @@ namespace SportsStore.Domain.Concrete
             emailSettings = settings;
         }
 
-        public void ProcessOrder(Cart cart, ShippingDetails shippingInfo)
+        public void ProcessOrder(Cart cart, ShippingDetail shippingInfo)
         {
             using (var smtpClient = new SmtpClient())
             {

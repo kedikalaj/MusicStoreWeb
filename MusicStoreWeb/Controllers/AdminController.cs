@@ -24,38 +24,54 @@ namespace MusicStoreWeb.Controllers
         }
         public ViewResult Edit(int? SongID)
         {
-            Song song = repository.Songs
-            .FirstOrDefault(p => p.SongID == SongID);
+            Songs song = repository.Songs
+            .FirstOrDefault(p => p.ID == SongID);
             return View(song);
         }
         [HttpPost]
-        public ActionResult Edit(Song product, HttpPostedFileBase image = null)
+        public ActionResult Edit(Songs product, HttpPostedFileBase image = null)
         {
-            if (ModelState.IsValid)
+
+
             {
-                if (image != null)
+                var list = new List<string>() { "Pop", "Rock" };
+                ViewBag.list = list;
+                ViewBag.list = list.ToList();
+
+
+
+                if (ModelState.IsValid)
                 {
-                    product.ImageMimeType = image.ContentType;
-                    product.ImageData = new byte[image.ContentLength];
-                    image.InputStream.Read(product.ImageData, 0, image.ContentLength);
+                    if (image != null)
+                    {
+                        product.ImageMimeType = image.ContentType;
+                        product.ImageData = new byte[image.ContentLength];
+                        image.InputStream.Read(product.ImageData, 0, image.ContentLength);
+                    }
+                    
+                    repository.SaveProduct(product);
+                    TempData["message"] = string.Format("{0} has been saved", product.Name);
+                    return RedirectToAction("Index");
                 }
-                repository.SaveProduct(product);
-                TempData["message"] = string.Format("{0} has been saved", product.Name);
-                return RedirectToAction("Index");
-            }
-            else
-            {
-            return View(product);
+                else
+                {
+
+
+                    return View(product);
+
+                }
+
             }
         }
+
         public ViewResult Create()
         {
-            return View("Edit", new Song());
+            return View("Edit", new Songs());
         }
         [HttpPost]
         public ActionResult Delete(int SongId)
         {
-            Song deletedProduct = repository.DeleteProduct(SongId);
+            Songs deletedProduct = repository.DeleteProduct(SongId);
             if (deletedProduct != null)
             {
                 TempData["message"] = string.Format("{0} was deleted",
@@ -63,5 +79,17 @@ namespace MusicStoreWeb.Controllers
             }
             return RedirectToAction("Index");
         }
+
+
+    }
+    public class Genres
+    {
+        public Genre Genress { get; set; }
+    }
+
+    public enum Genre
+    {
+        Pop,
+        Rock
     }
 }

@@ -26,8 +26,8 @@ namespace MusicStoreWeb.Controllers
         }
         public RedirectToRouteResult AddToCart(Cart cart, int songId, string returnUrl)
         {
-            Song product = repository.Songs
-            .FirstOrDefault(p => p.SongID == songId);
+            Songs product = repository.Songs
+            .FirstOrDefault(p => p.ID == songId);
             if (product != null)
             {
                 cart.AddItem(product, 1);
@@ -36,8 +36,8 @@ namespace MusicStoreWeb.Controllers
         }
         public RedirectToRouteResult RemoveFromCart(Cart cart, int songId, string returnUrl)
         {
-            Song product = repository.Songs
-            .FirstOrDefault(p => p.SongID == songId);
+            Songs product = repository.Songs
+            .FirstOrDefault(p => p.ID == songId);
             if (product != null)
             {
                 cart.RemoveLine(product);
@@ -51,12 +51,12 @@ namespace MusicStoreWeb.Controllers
         }
         public ViewResult Checkout()
         {
-            return View(new ShippingDetails());
+            return View(new ShippingDetail());
      
         }
 
         [HttpPost]
-        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        public ViewResult Checkout(Cart cart, ShippingDetail shippingDetails)
         {
             if (cart.Lines.Count() == 0)
             {
