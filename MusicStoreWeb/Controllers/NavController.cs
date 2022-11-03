@@ -2,23 +2,30 @@
 using System.Web.Mvc;
 using MusicStore.Domain.Abstract;
 using System.Linq;
+using MusicStore.Domain.Entities;
+using MusicStore.Domain.Concrete;
 
 namespace MusicStoreWeb.Controllers
 {
     public class NavController : Controller
     {
-        private ISongsRepository repository;
-        public NavController(ISongsRepository repo)
+        private ISongsRepository songsRepository;
+        private IGenresRepository genresRepository;
+
+
+
+        public NavController(ISongsRepository SongRepo, IGenresRepository GenresRepo)
         {
-            repository = repo;
+            songsRepository = SongRepo;
+            genresRepository = GenresRepo;
         }
         public PartialViewResult Menu(string category = null)
         {
             
             ViewBag.SelectedCategory = category;
 
-            IEnumerable<MusicStore.Domain.Entities.Genres> categories = repository.Songs
-            .Select(x => x.Genre)
+            IEnumerable<string> categories = genresRepository.Genres
+           .Select(x => x.Name)
            .Distinct()
            .OrderBy(x => x).AsEnumerable();
 
