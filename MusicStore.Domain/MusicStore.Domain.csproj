@@ -79,10 +79,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAuthProvider.cs" />
+    <Compile Include="Abstract\IGenresRepository.cs" />
+    <Compile Include="Abstract\IOrderItemRepository.cs" />
     <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="Abstract\IOrderRepository.cs" />
+    <Compile Include="Abstract\IRoleRepository.cs" />
+    <Compile Include="Abstract\IShippingDetailRepository.cs" />
     <Compile Include="Abstract\ISongsRepository.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
-    <Compile Include="Concrete\EFSongRepostory.cs" />
+    <Compile Include="Concrete\EFGenresRepository.cs" />
+    <Compile Include="Concrete\EFOrderItemRepository.cs" />
+    <Compile Include="Concrete\EFOrderRepository.cs" />
+    <Compile Include="Concrete\EFRoleRepository.cs" />
+    <Compile Include="Concrete\EFShippingDetailRepository.cs" />
+    <Compile Include="Concrete\EFSongRepository.cs" />
+    <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\EFToBeMigrated\Genres.cs" />
