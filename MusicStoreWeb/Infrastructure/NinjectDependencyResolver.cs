@@ -33,6 +33,11 @@ namespace MusicStoreWeb.Infrastructure
         {
             kernel.Bind<IGenresRepository>().To<EFGenresRepository>();
             kernel.Bind<ISongsRepository>().To<EFSongRepository>();
+            kernel.Bind<IUserRepository>().To<EFUserRepository>();
+            kernel.Bind<IRoleRepository>().To<EFRoleRepository>();
+            kernel.Bind<IShippingDetailRepository>().To<EFShippingDetailRepository>();
+            kernel.Bind<IOrderItemRepository>().To<EFOrderItemRepository>();
+            kernel.Bind<IOrderRepository>().To<EFOrderRepository>();
             EmailSettings emailSettings = new EmailSettings
             {
                 WriteAsFile = bool.Parse(ConfigurationManager
