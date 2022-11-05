@@ -22,15 +22,15 @@ namespace SportsStore.WebUI.Controllers
             SongsListViewModel model = new SongsListViewModel
             {
                 Songs = repository.Songs
-                .Where(p => category == null || p.Genre == category)
-                .OrderBy(p => p.SongID)
+                .Where(p => category == null || p.Genre?.Name == category)
+                .OrderBy(p => p.ID)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize), PagingInfo = new PagingInfo{
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                 TotalItems = category == null ?
                 repository.Songs.Count() :
-                repository.Songs.Where(e => e.Genre == category).Count()
+                repository.Songs.Where(e => e.Genre.Name == category).Count()
                     
                 },
             CurrentCategory = category
@@ -40,8 +40,8 @@ namespace SportsStore.WebUI.Controllers
     }
         public FileContentResult GetImage(int SongId)
         {
-            Song prod = repository.Songs
-            .FirstOrDefault(p => p.SongID == SongId);
+            Songs prod = repository.Songs
+            .FirstOrDefault(p => p.ID == SongId);
             if (prod != null)
             {
                 return File(prod.ImageData, prod.ImageMimeType);

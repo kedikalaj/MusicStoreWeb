@@ -9,10 +9,10 @@ namespace MusicStore.Domain.Entities
     public class Cart
     {
         private List<CartLine> lineCollection = new List<CartLine>();
-        public void AddItem(Song product, int quantity)
+        public void AddItem(Songs product, int quantity)
         {
             CartLine line = lineCollection
-            .Where(p => p.Product.SongID == product.SongID)
+            .Where(p => p.Product.ID == product.ID)
             .FirstOrDefault();
             if (line == null)
             {
@@ -27,9 +27,9 @@ namespace MusicStore.Domain.Entities
                 line.Quantity += quantity;
             }
         }
-        public void RemoveLine(Song product)
+        public void RemoveLine(Songs product)
         {
-            lineCollection.RemoveAll(l => l.Product.SongID == product.SongID);
+            lineCollection.RemoveAll(l => l.Product.ID == product.ID);
         }
         public decimal ComputeTotalValue()
         {
@@ -47,7 +47,7 @@ namespace MusicStore.Domain.Entities
     }
     public class CartLine
     {
-        public Song Product { get; set; }
+        public Songs Product { get; set; }
         public int Quantity { get; set; }
     }
 

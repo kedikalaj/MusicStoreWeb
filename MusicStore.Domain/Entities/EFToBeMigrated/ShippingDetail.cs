@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
     namespace MusicStore.Domain.Entities
     {
-    public class ShippingDetails
+    public class ShippingDetail
     {
+        
+
+        public int ID { get; set; }
         [Required(ErrorMessage = "Please enter a name")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter the first address line")]
