@@ -18,14 +18,14 @@ namespace MusicStoreWeb
             {
                 controller = "Music",
                 action = "List",
-                category = (string)null,
+                category = (int)0, 
                 page = 1
             }
             );
 
                 routes.MapRoute(null,
-                "Page{page}",
-                new { controller = "Music", action = "List", category = (string)null },
+                "{category}",
+                new { controller = "Music", action = "List", category = (int)0 },
                 new { page = @"\d+" }
  );
             routes.MapRoute(null,

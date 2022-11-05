@@ -17,20 +17,20 @@ namespace SportsStore.WebUI.Controllers
         {
             this.repository = productRepository;
         }
-        public ViewResult List(string category, int page = 1)
+        public ViewResult List(int? category, int page = 1)
         {
             SongsListViewModel model = new SongsListViewModel
             {
                 Songs = repository.Songs
-                .Where(p => category == null || p.Genre?.Name == category)
+                .Where(p => category == 0 || p.GenreID == category)
                 .OrderBy(p => p.ID)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize), PagingInfo = new PagingInfo{
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                TotalItems = category == null ?
+                TotalItems = category == 0 ?
                 repository.Songs.Count() :
-                repository.Songs.Where(e => e.Genre.Name == category).Count()
+                repository.Songs.Where(e => e.GenreID == category).Count()
                     
                 },
             CurrentCategory = category

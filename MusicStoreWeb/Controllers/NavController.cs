@@ -4,6 +4,7 @@ using MusicStore.Domain.Abstract;
 using System.Linq;
 using MusicStore.Domain.Entities;
 using MusicStore.Domain.Concrete;
+using MusicStoreWeb.Models;
 
 namespace MusicStoreWeb.Controllers
 {
@@ -24,10 +25,13 @@ namespace MusicStoreWeb.Controllers
             
             ViewBag.SelectedCategory = category;
 
-            IEnumerable<string> categories = genresRepository.Genres
-           .Select(x => x.Name)
-           .Distinct()
-           .OrderBy(x => x).AsEnumerable();
+            List<GenreMenuItemModel> categories = genresRepository.Genres
+           .Select(x => new GenreMenuItemModel()
+           {
+               Id = x.ID,
+               Name = x.Name
+           })
+           .OrderBy(x => x.Name).ToList();
 
                 return PartialView("FlexMenu", categories);
 

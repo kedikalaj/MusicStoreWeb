@@ -1,16 +1,17 @@
-﻿@model IEnumerable<string>
+﻿@model List<GenreMenuItemModel>
+@using MusicStoreWeb.Models
 @Html.ActionLink("Home", "List", "Music", null, new { @class = "btn btn-block btn-default btn-lg" })
 @foreach (var link in Model)
 {
-    @Html.RouteLink(link, new
+    @Html.RouteLink(link.Name, new
     {
         controller = "Music",
     action = "List",
-    category = link,
+    category = link.Id,
     page = 1
     }, new
     {
-    @class = "btn btn-block btn-default btn-lg" + (link == ViewBag.SelectedCategory ? " btn-primary" : "")
+    @class = "btn btn-block btn-default btn-lg" + (link.Id.ToString() == ViewBag.SelectedCategory ? " btn-primary" : "")
     })
 }
 
