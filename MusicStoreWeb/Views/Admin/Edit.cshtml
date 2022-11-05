@@ -13,12 +13,15 @@
      FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="panel-body">
-            @Html.HiddenFor(m => m.SongID)
+            @Html.HiddenFor(m => m.ID)
+            @Html.HiddenFor(m => m.ImageMimeType)
+            @Html.HiddenFor(m => m.ImageData)
+
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 switch (property.PropertyName)
                 {
-                    case "SongID":
+                    case "ID":
                     case "ImageData":
                     case "ImageMimeType":
                         // do nothing
@@ -60,8 +63,8 @@
                 }
                 else
                 {
-            <img class="img-thumbnail" width="150" height="150"
-                 src="@Url.Action("GetImage", "Music", new {Model.SongID})" />
+                    <img class="img-thumbnail" width="150" height="150"
+                         src="@Url.Action("GetImage", "Music", new {Model.ID})" />
                 }
             </div>
         </div>

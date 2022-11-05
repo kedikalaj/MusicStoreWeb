@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MusicStore.Domain.Entities.Song>
+﻿@model IEnumerable<MusicStore.Domain.Entities.Songs>
+@using MusicStore.Domain.Entities;
+
 @{
     ViewBag.Title = "Admin: All Songs";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -19,13 +21,13 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td class="text-right">@item.SongID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.SongID })</td>
+                    <td class="text-right">@item.ID</td>
+                    <td>@Html.ActionLink(item.Name, "Edit", new { item.ID })</td>
                     <td class="text-right">@item.Price.ToString("c")</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("SongID", item.SongID)
+                            @Html.Hidden("ID", item.ID)
                             <input type="submit"
                                    class="btn btn-default btn-xs"
                                    value="Delete" />

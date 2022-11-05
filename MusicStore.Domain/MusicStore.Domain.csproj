@@ -91,6 +91,10 @@
     <Compile Include="Migrations\202210271542528_AddedSongsTable.designer.cs">
       <DependentUpon>202210271542528_AddedSongsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211050348193_TestingAutoIncrement.cs" />
+    <Compile Include="Migrations\202211050348193_TestingAutoIncrement.designer.cs">
+      <DependentUpon>202211050348193_TestingAutoIncrement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -107,6 +111,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202210271542528_AddedSongsTable.resx">
       <DependentUpon>202210271542528_AddedSongsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211050348193_TestingAutoIncrement.resx">
+      <DependentUpon>202211050348193_TestingAutoIncrement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

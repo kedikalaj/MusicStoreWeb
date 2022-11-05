@@ -11,9 +11,11 @@ namespace MusicStore.Domain.Entities
 {
     public class Song
     {
-        [HiddenInput(DisplayValue = false)]
+        
         [Key]
-        public int SongID { get; set; }
+       // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+
         public string Name { get; set; }
         public string Author { get; set; }
         public decimal Price { get; set; }
