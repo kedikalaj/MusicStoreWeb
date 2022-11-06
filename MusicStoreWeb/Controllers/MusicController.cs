@@ -38,10 +38,10 @@ namespace SportsStore.WebUI.Controllers
 
             return View(model);
     }
-        public FileContentResult GetImage(int SongId)
+        public FileContentResult GetImage(int ID)
         {
             Songs prod = repository.Songs
-            .FirstOrDefault(p => p.ID == SongId);
+            .FirstOrDefault(p => p.ID == ID);
             if (prod != null)
             {
                 return File(prod.ImageData, prod.ImageMimeType);

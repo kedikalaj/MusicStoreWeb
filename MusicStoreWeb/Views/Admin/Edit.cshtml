@@ -32,7 +32,7 @@
                             <label>@(property.DisplayName ?? property.PropertyName)</label>
                             @if (property.PropertyName == "Genre")
                             {
-                                @Html.DropDownListFor(m => m.Genre, new SelectList(Enum.GetValues(typeof(Genre))), "Select Genre")
+                                @Html.DropDownListFor(m => m.Genre, new SelectList(Enum.GetValues(typeof(Genrees))), "Select Genre")
                             }
                             else
                             {
