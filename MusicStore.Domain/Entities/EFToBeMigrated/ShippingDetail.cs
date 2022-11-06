@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-    namespace MusicStore.Domain.Entities
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MusicStore.Domain.Entities
     {
     public class ShippingDetail
     {
-        
 
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [Required(ErrorMessage = "Please enter a name")]
         public string Name { get; set; }

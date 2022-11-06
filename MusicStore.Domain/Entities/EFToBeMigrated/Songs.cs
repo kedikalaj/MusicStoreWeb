@@ -14,6 +14,7 @@ namespace MusicStore.Domain.Entities
     {
         
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }

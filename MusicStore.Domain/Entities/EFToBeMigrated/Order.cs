@@ -13,6 +13,7 @@ namespace MusicStore.Domain.Entities
     public class Order
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public int UserID { get; set; }
         public int ShipDetailsID { get; set; }
