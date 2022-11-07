@@ -116,6 +116,18 @@
     <Compile Include="Migrations\202211052211206_AddedIdentityColumns.designer.cs">
       <DependentUpon>202211052211206_AddedIdentityColumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211071050395_tetst.cs" />
+    <Compile Include="Migrations\202211071050395_tetst.designer.cs">
+      <DependentUpon>202211071050395_tetst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211071105172_test1.cs" />
+    <Compile Include="Migrations\202211071105172_test1.designer.cs">
+      <DependentUpon>202211071105172_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211071112035_test2.cs" />
+    <Compile Include="Migrations\202211071112035_test2.designer.cs">
+      <DependentUpon>202211071112035_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -138,6 +150,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211052211206_AddedIdentityColumns.resx">
       <DependentUpon>202211052211206_AddedIdentityColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211071050395_tetst.resx">
+      <DependentUpon>202211071050395_tetst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211071105172_test1.resx">
+      <DependentUpon>202211071105172_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211071112035_test2.resx">
+      <DependentUpon>202211071112035_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

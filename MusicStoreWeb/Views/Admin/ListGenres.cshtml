@@ -1,31 +1,34 @@
-﻿@model IEnumerable<MusicStore.Domain.Entities.Songs>
-@using MusicStore.Domain.Entities;
+﻿
+@model IEnumerable<MusicStore.Domain.Entities.Genres>
 
 @{
-    ViewBag.Title = "Admin: All Songs";
+    ViewBag.Title = "Admin: All Genres";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3>All Songs</h3>
+        <h3>All Genres</h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="text-right">ID</th>
                 <th>Name</th>
-                <th class="text-right">Price</th>
-                <th class="text-center">Actions</th>
             </tr>
             @foreach (var item in Model)
             {
+                if (item.Name == null)
+                {
+
+                }
+                else { 
                 <tr>
                     <td class="text-right">@item.ID</td>
-                    <td>@Html.ActionLink(item.Name, "Edit", new { item.ID })</td>
-                    <td class="text-right">@item.Price.ToString("c")</td>
+                    <td>@Html.ActionLink(item.Name, "EditG", new { item.ID })</td>
+
                     <td class="text-center">
-                        @using (Html.BeginForm("Delete", "Admin"))
+                        @using (Html.BeginForm("DeleteG", "Admin"))
                         {
                             @Html.Hidden("ID", item.ID)
                             <input type="submit"
@@ -33,15 +36,14 @@
                                    value="Delete" />
                         }
                     </td>
-                </tr>
+                </tr>}
             }
         </table>
     </div>
     <div class="panel-footer">
-        @Html.ActionLink("Add a new song", "Create", null,
-        new { @class = "btn btn-default" })
 
-        @Html.ActionLink("Manage genres", "ListGenres", null,
+        @Html.ActionLink("Add new genre", "CreateG", null,
         new { @class = "btn btn-default" })
     </div>
 </div>
+

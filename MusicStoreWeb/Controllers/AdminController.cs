@@ -51,6 +51,8 @@ namespace MusicStoreWeb.Controllers
                 }
             }
         }
+
+    
         public ActionResult SaveGenre(Genres product)
         {
 
@@ -71,15 +73,31 @@ namespace MusicStoreWeb.Controllers
 
             
         }
+        public ViewResult EditGenre(int? ID)
+        {
+            Genres genres = genresRepository.Genres
+            .FirstOrDefault(p => p.ID == ID);
+            return View(genres);
+        }
+       
+        
 
         public ViewResult Create()
         {
             return View("Edit", new Songs());
         }
-        public ActionResult CreateGenre()
+        public ViewResult CreateG()
         {
             return View("SaveGenre", new Genres());
         }
+
+
+
+        public ViewResult ListGenres()
+        {
+            return View(genresRepository.Genres);
+        }
+
         [HttpPost]
         public ActionResult Delete(int ID)
         {
@@ -92,7 +110,16 @@ namespace MusicStoreWeb.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public ActionResult DeleteG(int ID)
+        {
+            Genres deletedProduct = genresRepository.DeleteGenre(ID);
+            if (deletedProduct != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted",
+                deletedProduct.Name);
+            }
+            return RedirectToAction("Index");
+        }
     }
     public class Genree
     {

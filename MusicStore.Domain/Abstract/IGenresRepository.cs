@@ -9,7 +9,7 @@ namespace MusicStore.Domain.Abstract
         IEnumerable<Genres> Genres { get; }
         void SaveGenre(Genres product);
 
-//Genres DeleteGenre(int ID);
+        Genres DeleteGenre(int ID);
 
 
     }
