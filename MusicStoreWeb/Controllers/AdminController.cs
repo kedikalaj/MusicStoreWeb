@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
+using MusicStore.Domain.Models;
 
 namespace MusicStoreWeb.Controllers
 {
@@ -26,10 +27,15 @@ namespace MusicStoreWeb.Controllers
         {
             Songs song = repository.Songs
             .FirstOrDefault(p => p.ID == ID);
-            return View(song);
+            SongViewModel model = new SongViewModel();
+            if(song != null)
+            {
+                model.Name = song.Name;
+            }
+            return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(Songs product, HttpPostedFileBase image = null)
+        public ActionResult Edit(SongViewModel product, HttpPostedFileBase image = null)
         {
             {
                 if (ModelState.IsValid)
@@ -84,7 +90,7 @@ namespace MusicStoreWeb.Controllers
 
         public ViewResult Create()
         {
-            return View("Edit", new Songs());
+            return View("Edit", new SongViewModel());
         }
         public ViewResult CreateG()
         {

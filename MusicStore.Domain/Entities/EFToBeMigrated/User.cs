@@ -20,11 +20,13 @@ namespace MusicStore.Domain.Entities
 
         public int RoleID { get; set; }
 
-        [ForeignKey("ID")]
+        [ForeignKey("RoleID")]
 
 
 
         public virtual Role Role { get; set; }
+        [ForeignKey("ID")]
+        public virtual ICollection<Order> Orders { get; set; }
 
 
     }

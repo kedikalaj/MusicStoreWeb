@@ -19,10 +19,10 @@ namespace MusicStore.Domain.Entities
         public int Quantity { get; set; }
         public int OrderID { get; set; }
 
-        [ForeignKey("ID")]
+        [ForeignKey("SongID")]
 
         public virtual Songs Song{ get; set; }
-        [ForeignKey("ID")]
+        [ForeignKey("OrderID")]
         public virtual Order Order { get; set; }
 
     }

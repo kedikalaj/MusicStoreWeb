@@ -31,5 +31,7 @@ namespace MusicStore.Domain.Entities
         [Required(ErrorMessage = "Please enter a country name")]
         public string Country { get; set; }
         public bool GiftWrap { get; set; }
+        [ForeignKey("ID")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

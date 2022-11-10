@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
-
+using MusicStore.Domain.Models;
 
 namespace MusicStore.Domain.Concrete
 {
@@ -16,11 +16,21 @@ namespace MusicStore.Domain.Concrete
         {
             get { return context.Songs; }
         }
-        public void SaveProduct(Songs product)
+        public void SaveProduct(SongViewModel product)
         {
             if (product.ID == 0)
             {
-                context.Songs.Add(product);
+                Songs dbEntry = new Songs();
+                dbEntry.Name = product.Name;
+                dbEntry.Author = product.Author;
+                dbEntry.Price = product.Price;
+                dbEntry.GenreID = product.GenreID;
+                dbEntry.Length = product.Length;
+                dbEntry.ImageData = product.ImageData;
+                dbEntry.ImageMimeType = product.ImageMimeType;
+                //product is the name in SongViweMod
+                //behet per te gjitha
+                context.Songs.Add(dbEntry);
             }
             else
             {
@@ -30,7 +40,7 @@ namespace MusicStore.Domain.Concrete
                     dbEntry.Name = product.Name;
                     dbEntry.Author = product.Author;
                     dbEntry.Price = product.Price;
-                    dbEntry.Genre = product.Genre;
+                    dbEntry.GenreID = product.GenreID;
                     dbEntry.Length = product.Length;
                     dbEntry.ImageData = product.ImageData;
                     dbEntry.ImageMimeType = product.ImageMimeType;

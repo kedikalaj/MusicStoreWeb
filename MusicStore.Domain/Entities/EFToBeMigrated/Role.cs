@@ -17,6 +17,7 @@ namespace MusicStore.Domain.Entities
         public int ID { get; set; }
         public string Name { get; set; }
 
-
+        [ForeignKey("ID")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

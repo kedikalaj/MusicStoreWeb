@@ -104,31 +104,12 @@
     <Compile Include="Entities\EFToBeMigrated\ShippingDetail.cs" />
     <Compile Include="Entities\EFToBeMigrated\Songs.cs" />
     <Compile Include="Entities\EFToBeMigrated\User.cs" />
-    <Compile Include="Migrations\202211031703317_InitialDatabaseCreationMigration.cs" />
-    <Compile Include="Migrations\202211031703317_InitialDatabaseCreationMigration.designer.cs">
-      <DependentUpon>202211031703317_InitialDatabaseCreationMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202211050348193_TestingAutoIncrement.cs" />
-    <Compile Include="Migrations\202211050348193_TestingAutoIncrement.designer.cs">
-      <DependentUpon>202211050348193_TestingAutoIncrement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202211052211206_AddedIdentityColumns.cs" />
-    <Compile Include="Migrations\202211052211206_AddedIdentityColumns.designer.cs">
-      <DependentUpon>202211052211206_AddedIdentityColumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202211071050395_tetst.cs" />
-    <Compile Include="Migrations\202211071050395_tetst.designer.cs">
-      <DependentUpon>202211071050395_tetst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202211071105172_test1.cs" />
-    <Compile Include="Migrations\202211071105172_test1.designer.cs">
-      <DependentUpon>202211071105172_test1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202211071112035_test2.cs" />
-    <Compile Include="Migrations\202211071112035_test2.designer.cs">
-      <DependentUpon>202211071112035_test2.cs</DependentUpon>
+    <Compile Include="Migrations\202211101704211_AddingDatabaseTablesAndSchema.cs" />
+    <Compile Include="Migrations\202211101704211_AddingDatabaseTablesAndSchema.designer.cs">
+      <DependentUpon>202211101704211_AddingDatabaseTablesAndSchema.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SongViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,23 +123,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202211031703317_InitialDatabaseCreationMigration.resx">
-      <DependentUpon>202211031703317_InitialDatabaseCreationMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202211050348193_TestingAutoIncrement.resx">
-      <DependentUpon>202211050348193_TestingAutoIncrement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202211052211206_AddedIdentityColumns.resx">
-      <DependentUpon>202211052211206_AddedIdentityColumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202211071050395_tetst.resx">
-      <DependentUpon>202211071050395_tetst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202211071105172_test1.resx">
-      <DependentUpon>202211071105172_test1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202211071112035_test2.resx">
-      <DependentUpon>202211071112035_test2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211101704211_AddingDatabaseTablesAndSchema.resx">
+      <DependentUpon>202211101704211_AddingDatabaseTablesAndSchema.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

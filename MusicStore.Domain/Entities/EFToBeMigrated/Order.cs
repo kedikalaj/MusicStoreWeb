@@ -17,10 +17,12 @@ namespace MusicStore.Domain.Entities
         public int ID { get; set; }
         public int UserID { get; set; }
         public int ShipDetailsID { get; set; }
-        [ForeignKey("ID")]
+        [ForeignKey("UserID")]
         public virtual User User{ get; set; }
-        [ForeignKey("ID")]
+        [ForeignKey("ShipDetailsID")]
         public virtual ShippingDetail ShippingDetail { get; set; }
+        [ForeignKey("ID")]
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
 
     }
 }

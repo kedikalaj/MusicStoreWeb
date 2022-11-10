@@ -19,21 +19,25 @@ namespace SportsStore.WebUI.Controllers
         }
         public ViewResult List(int? category, int page = 1)
         {
-            SongsListViewModel model = new SongsListViewModel
-            {
-                Songs = repository.Songs
+            var songs = repository.Songs
                 .Where(p => category == 0 || p.GenreID == category)
                 .OrderBy(p => p.ID)
                 .Skip((page - 1) * PageSize)
-                .Take(PageSize), PagingInfo = new PagingInfo{
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                TotalItems = category == 0 ?
+                .Take(PageSize).ToList();
+            var pagingInfo = new PagingInfo
+            {
+                CurrentPage = page,
+                ItemsPerPage = PageSize
+            };
+            pagingInfo.TotalItems = category == 0 ?
                 repository.Songs.Count() :
-                repository.Songs.Where(e => e.GenreID == category).Count()
-                    
-                },
-            CurrentCategory = category
+                repository.Songs.Where(e => e.GenreID == category).Count();
+
+            SongsListViewModel model = new SongsListViewModel
+            {
+                Songs = songs, 
+                PagingInfo = pagingInfo,
+                CurrentCategory = category
             };
 
             return View(model);
