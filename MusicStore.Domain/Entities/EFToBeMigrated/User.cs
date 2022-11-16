@@ -25,7 +25,6 @@ namespace MusicStore.Domain.Entities
 
 
         public virtual Role Role { get; set; }
-        [ForeignKey("ID")]
         public virtual ICollection<Order> Orders { get; set; }
 
 

@@ -17,8 +17,6 @@ namespace MusicStore.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string Name { get; set; }
-
-        [ForeignKey("ID")]
         public virtual ICollection<Songs> Songs { get; set; }
 
         //public virtual Genre Genre { get; set; } 

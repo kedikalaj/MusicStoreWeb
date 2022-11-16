@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddingDatabaseTablesAndSchema : DbMigration
+    public partial class AttemptForEntitiesTest : DbMigration
     {
         public override void Up()
         {
@@ -30,8 +30,8 @@
                         ImageMimeType = c.String(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Genres", t => t.ID)
-                .Index(t => t.ID);
+                .ForeignKey("dbo.Genres", t => t.GenreID, cascadeDelete: true)
+                .Index(t => t.GenreID);
             
             CreateTable(
                 "dbo.OrderItems",
@@ -44,8 +44,8 @@
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Orders", t => t.OrderID, cascadeDelete: true)
-                .ForeignKey("dbo.Songs", t => t.ID)
-                .Index(t => t.ID)
+                .ForeignKey("dbo.Songs", t => t.SongID, cascadeDelete: true)
+                .Index(t => t.SongID)
                 .Index(t => t.OrderID);
             
             CreateTable(
@@ -105,18 +105,18 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.OrderItems", "ID", "dbo.Songs");
+            DropForeignKey("dbo.OrderItems", "SongID", "dbo.Songs");
             DropForeignKey("dbo.Users", "RoleID", "dbo.Roles");
             DropForeignKey("dbo.Orders", "UserID", "dbo.Users");
             DropForeignKey("dbo.Orders", "ShipDetailsID", "dbo.ShippingDetails");
             DropForeignKey("dbo.OrderItems", "OrderID", "dbo.Orders");
-            DropForeignKey("dbo.Songs", "ID", "dbo.Genres");
+            DropForeignKey("dbo.Songs", "GenreID", "dbo.Genres");
             DropIndex("dbo.Users", new[] { "RoleID" });
             DropIndex("dbo.Orders", new[] { "ShipDetailsID" });
             DropIndex("dbo.Orders", new[] { "UserID" });
             DropIndex("dbo.OrderItems", new[] { "OrderID" });
-            DropIndex("dbo.OrderItems", new[] { "ID" });
-            DropIndex("dbo.Songs", new[] { "ID" });
+            DropIndex("dbo.OrderItems", new[] { "SongID" });
+            DropIndex("dbo.Songs", new[] { "GenreID" });
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.ShippingDetails");

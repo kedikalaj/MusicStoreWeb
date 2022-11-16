@@ -28,7 +28,6 @@ namespace MusicStore.Domain.Entities
         [ForeignKey("GenreID")]
 
         public virtual Genres Genre { get; set; }
-        [ForeignKey("ID")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

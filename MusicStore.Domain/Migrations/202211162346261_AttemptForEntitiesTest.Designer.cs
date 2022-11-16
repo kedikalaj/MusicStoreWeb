@@ -7,13 +7,13 @@ namespace MusicStore.Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddingDatabaseTablesAndSchema : IMigrationMetadata
+    public sealed partial class AttemptForEntitiesTest : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingDatabaseTablesAndSchema));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AttemptForEntitiesTest));
         
         string IMigrationMetadata.Id
         {
-            get { return "202211101704211_AddingDatabaseTablesAndSchema"; }
+            get { return "202211162346261_AttemptForEntitiesTest"; }
         }
         
         string IMigrationMetadata.Source
