@@ -21,7 +21,6 @@ namespace MusicStore.Domain.Entities
         public virtual User User{ get; set; }
         [ForeignKey("ShipDetailsID")]
         public virtual ShippingDetail ShippingDetail { get; set; }
-        [ForeignKey("ID")]
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 
     }

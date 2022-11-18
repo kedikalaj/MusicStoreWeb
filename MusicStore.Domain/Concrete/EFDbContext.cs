@@ -11,6 +11,7 @@ namespace MusicStore.Domain.Concrete
 {
     public class EFDbContext : DbContext
     {
+        public EFDbContext() : base("name=MusicDb") { }
         public DbSet<Genres> Genres { get; set; }
         public DbSet<Order> Order { get; set; }
 

@@ -104,9 +104,9 @@
     <Compile Include="Entities\EFToBeMigrated\ShippingDetail.cs" />
     <Compile Include="Entities\EFToBeMigrated\Songs.cs" />
     <Compile Include="Entities\EFToBeMigrated\User.cs" />
-    <Compile Include="Migrations\202211101704211_AddingDatabaseTablesAndSchema.cs" />
-    <Compile Include="Migrations\202211101704211_AddingDatabaseTablesAndSchema.designer.cs">
-      <DependentUpon>202211101704211_AddingDatabaseTablesAndSchema.cs</DependentUpon>
+    <Compile Include="Migrations\202211170851134_InitialMigration.cs" />
+    <Compile Include="Migrations\202211170851134_InitialMigration.designer.cs">
+      <DependentUpon>202211170851134_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SongViewModel.cs" />
@@ -123,8 +123,8 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202211101704211_AddingDatabaseTablesAndSchema.resx">
-      <DependentUpon>202211101704211_AddingDatabaseTablesAndSchema.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202211170851134_InitialMigration.resx">
+      <DependentUpon>202211170851134_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
