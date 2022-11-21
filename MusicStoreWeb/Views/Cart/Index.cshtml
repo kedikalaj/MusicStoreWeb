@@ -28,10 +28,10 @@
                 <td class="text-right">
                     @((line.Quantity * line.Product.Price).ToString("c"))
                 </td>
-                <td>
+                <td class="text-right">
                     @using (Html.BeginForm("RemoveFromCart", "Cart"))
                     {
-                        @Html.Hidden("songId", line.Product.ID)
+                        @Html.Hidden("ID", line.Product.ID)
                         @Html.HiddenFor(x => x.ReturnUrl)
                         <input class="btn btn-sm btn-warning"
                                type="submit" value="Remove" />
