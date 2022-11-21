@@ -18,6 +18,7 @@
             @Html.HiddenFor(m => m.ImageMimeType)
             @Html.HiddenFor(m => m.ImageData)
 
+            @Html.ValidationSummary()
             @foreach (var property in ViewData.ModelMetadata.Properties)
             {
                 switch (property.PropertyName)
