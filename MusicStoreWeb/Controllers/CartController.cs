@@ -24,20 +24,20 @@ namespace MusicStoreWeb.Controllers
                 Cart = cart
             });
         }
-        public RedirectToRouteResult AddToCart(Cart cart, int songId, string returnUrl)
+        public RedirectToRouteResult AddToCart(Cart cart, int ID, string returnUrl)
         {
             Songs product = repository.Songs
-            .FirstOrDefault(p => p.ID == songId);
+            .FirstOrDefault(p => p.ID == ID);
             if (product != null)
             {
                 cart.AddItem(product, 1);
             }
             return RedirectToAction("Index", new { returnUrl });
         }
-        public RedirectToRouteResult RemoveFromCart(Cart cart, int songId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, int ID, string returnUrl)
         {
             Songs product = repository.Songs
-            .FirstOrDefault(p => p.ID == songId);
+            .FirstOrDefault(p => p.ID == ID);
             if (product != null)
             {
                 cart.RemoveLine(product);
