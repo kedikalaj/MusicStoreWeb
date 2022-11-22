@@ -28,8 +28,6 @@ namespace MusicStore.Domain.Concrete
                 dbEntry.Length = product.Length;
                 dbEntry.ImageData = product.ImageData;
                 dbEntry.ImageMimeType = product.ImageMimeType;
-                //product is the name in SongViweMod
-                //behet per te gjitha
                 context.Songs.Add(dbEntry);
             }
             else

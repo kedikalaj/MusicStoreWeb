@@ -15,5 +15,23 @@ namespace MusicStore.Domain.Concrete
         {
             get { return context.ShippingDetail; }
         }
+        public void SaveShippingDeatails(ShippingDetail detail)
+        {
+
+            
+                ShippingDetail dbEntry = new ShippingDetail();
+                dbEntry.Name = detail.Name;
+                dbEntry.Line1 = detail.Line1;
+                dbEntry.Line2 = detail.Line2;
+                dbEntry.Line3 = detail.Line3;
+                dbEntry.City = detail.City;
+                dbEntry.State = detail.State;
+                dbEntry.Zip = detail.Zip;
+                dbEntry.Country=detail.Country;
+                dbEntry.GiftWrap = detail.GiftWrap;
+                context.ShippingDetail.Add(dbEntry);
+            
+            context.SaveChanges();
+        }
     }
 }

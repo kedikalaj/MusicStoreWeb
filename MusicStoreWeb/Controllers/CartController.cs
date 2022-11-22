@@ -11,10 +11,12 @@ namespace MusicStoreWeb.Controllers
         private ISongsRepository repository;
         
         private IOrderProcessor orderProcessor;
-        public CartController(ISongsRepository repo, IOrderProcessor proc)
+        private IShippingDetailRepository shippingDetailRepository;
+        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail)
         {
             repository = repo;
             orderProcessor = proc;
+            shippingDetailRepository = sdetail;
         }
         public ViewResult Index(Cart cart, string returnUrl)
         {
@@ -72,6 +74,28 @@ namespace MusicStoreWeb.Controllers
             {
                 return View(shippingDetails);
             }
+        }
+        public ActionResult SaveShippingDetails(ShippingDetail detail)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                shippingDetailRepository.SaveShippingDeatails(detail);
+                TempData["message"] = string.Format("Shipping details with id {0} has been saved", detail.ID);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+
+                return View(detail);
+
+
+
+            }
+
+
         }
 
     }

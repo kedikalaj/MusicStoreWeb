@@ -7,7 +7,7 @@ namespace MusicStore.Domain.Abstract
     public interface IShippingDetailRepository
     {
         IEnumerable<ShippingDetail> ShippingDetail { get; }
-
+        void SaveShippingDeatails(ShippingDetail ShipDetails);
 
     }
 }
