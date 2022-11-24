@@ -6,5 +6,7 @@ namespace MusicStoreWeb.Models
     {
         public Cart Cart { get; set; }
         public string ReturnUrl { get; set; }
+
+        public string Username { get; set; }
     }
 }

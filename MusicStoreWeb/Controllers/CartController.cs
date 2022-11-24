@@ -53,8 +53,29 @@ namespace MusicStoreWeb.Controllers
         }
         public ViewResult Checkout()
         {
-            return View(new ShippingDetail());
-     
+
+            int ID = 1;
+            ShippingDetail detail = shippingDetailRepository.ShippingDetail
+           .FirstOrDefault(p => p.ID == ID);
+  
+
+
+            if (detail != null)
+            {
+                return View("FinalStep", detail);
+            }
+
+            else
+            {
+                return View(new ShippingDetail());
+            }
+        }
+        public ViewResult editShipping()
+        {
+            int ID = 1;
+            ShippingDetail detail = shippingDetailRepository.ShippingDetail
+           .FirstOrDefault(p => p.ID == ID);
+            return View("Checkout",new ShippingDetail());
         }
 
         [HttpPost]
