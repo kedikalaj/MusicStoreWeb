@@ -47,5 +47,9 @@ namespace MusicStore.Domain.Concrete
             }
             return dbEntry;
         }
+        public Genres GetGenreById(int id)
+        {
+            return Genres.Single(g => g.ID == id);
+        }
     }
 }

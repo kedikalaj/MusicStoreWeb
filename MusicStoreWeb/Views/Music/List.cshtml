@@ -5,15 +5,20 @@
 
 }
 
-@foreach (var p in Model.Songs)
-{
-    @Html.Partial("ProductSummary", p)
-}
+
+<ul id="album-list">
+    @foreach (var p in Model.Songs)
+    {
+        <li>
+            @Html.Partial("Details", p)
+        </li>
+    }
+</ul>
 
 
 
 
-<div class="btn-group pull-right">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
-    new { page = x, category = Model.CurrentCategory }))
-</div>
+    <div class="btn-group pull-right">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+        new { page = x, category = Model.CurrentCategory }))
+    </div>

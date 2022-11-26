@@ -1,0 +1,41 @@
+﻿@model MusicStore.Domain.Entities.Songs
+@using MusicStore.Domain.Entities;
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+
+<h2>@Model.Name</h2>
+
+<p>
+    @if (Model.ImageData != null)
+    {
+        <img alt="@Model.Name" width="200" height="200" src="@Url.Action("GetImage", "Music", new { ID = Model.ID})" />
+    }
+    else
+    {
+
+        <img alt="@Model.Name" src="/Content/Images/placeholder.gif" />
+    }
+</p>
+
+<div id="album-details">
+    @*<p>
+        <em>Genre:</em>
+        @Model.GenreID
+    <p>*@
+        <em>Artist:</em>
+        @Model.Author
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}", Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { ID = Model.ID }, null)
+
+
+    </p>
+</div>
+

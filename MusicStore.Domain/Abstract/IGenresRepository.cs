@@ -11,6 +11,8 @@ namespace MusicStore.Domain.Abstract
 
         Genres DeleteGenre(int ID);
 
+        Genres GetGenreById(int id);
+
 
     }
 }
