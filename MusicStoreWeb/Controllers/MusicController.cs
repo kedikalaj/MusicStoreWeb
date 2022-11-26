@@ -12,10 +12,12 @@ namespace SportsStore.WebUI.Controllers
     public class MusicController : Controller
     {
         private ISongsRepository repository;
-        public int PageSize = 4;
-        public MusicController(ISongsRepository productRepository)
+        private IGenresRepository genresRepository;
+        public int PageSize = 6;
+        public MusicController(ISongsRepository productRepository, IGenresRepository genresRepository)
         {
             this.repository = productRepository;
+            this.genresRepository = genresRepository;
         }
         public ViewResult List(int? category, int page = 1)
         {
@@ -54,6 +56,29 @@ namespace SportsStore.WebUI.Controllers
             {
                 return null;
             }
+        }
+        public ActionResult Details(int ID = 0)
+        {
+            if (ID == 0)
+                throw new ArgumentNullException("Ablum is not found");
+
+            var song = repository.Songs.SingleOrDefault(a => a.ID == ID);
+            if (song == null)
+                throw new ArgumentNullException("Ablum is not found");
+
+            var model = new Songs()
+            {
+                ID = song.ID,
+                Name = song.Name,
+                Author = song.Author,
+                Price = song.Price,
+                GenreID = song.GenreID,
+                Length = song.Length,
+                ImageData = song.ImageData,
+                ImageMimeType = song.ImageMimeType
+            };
+
+            return View(model);
         }
 
     }

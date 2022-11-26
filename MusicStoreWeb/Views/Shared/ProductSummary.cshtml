@@ -1,27 +1,37 @@
 ﻿@model MusicStore.Domain.Entities.Songs
 @using MusicStore.Domain.Entities;
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet"
+          type="text/css" />
+</head>
 
+<ul id="album-list">
 
-<div class="well">
-    @if (Model.ImageData != null)
-    {
-        <div class="pull-left" style="margin-right: 10px">
-            <img class="img-thumbnail" width="75" height="75"
-                 src="@Url.Action("GetImage", "Music",
- new { Model.ID })" />
-        </div>
-    }
-    <h3>
-        <strong>@Model.Name</strong>
-        <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
-    </h3>
-    @using (Html.BeginForm("AddToCart", "Cart"))
-    {
-        <div class="pull-right">
-            @Html.HiddenFor(x => x.ID)
-            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-            <input type="submit" class="btn btn-success" value="Add to cart" />
-        </div>
-    }
-    <span class="lead"> @Model.Author</span>
-</div>
+    <div class="well">
+        @if (Model.ImageData != null)
+        {
+            <div class="pull-left" style="margin-right: 10px">
+                <img class="img-thumbnail" width="75" height="75"
+                     src="@Url.Action("GetImage", "Music", new { Model.ID })" />
+            </div>
+        }
+        else
+        {
+
+            <img alt="@Model.Name" src="/Content/Images/placeholder.gif" />
+        }
+        <h3>
+            <strong>@Model.Name</strong>
+            <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
+        </h3>
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            <div class="pull-right">
+                @Html.HiddenFor(x => x.ID)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" class="btn btn-success" value="Add to cart" />
+            </div>
+        }
+        <span class="lead"> @Model.Author</span>
+    </div>
+    </ul>
