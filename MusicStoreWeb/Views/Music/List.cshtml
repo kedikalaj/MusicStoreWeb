@@ -4,13 +4,21 @@
     ViewBag.Title = "Songs";
 
 }
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet"
+          type="text/css" />
+</head>
 
+<img src="~/Content/home-showcase.png">
 
 <ul id="album-list">
     @foreach (var p in Model.Songs)
     {
         <li>
+
             @Html.Partial("Details", p)
+
+
         </li>
     }
 </ul>

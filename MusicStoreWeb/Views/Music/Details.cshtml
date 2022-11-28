@@ -4,27 +4,29 @@
 @{
     ViewBag.Title = Model.Name;
 }
-
+<head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet"
+          type="text/css" />
+</head>
 
 <h2>@Model.Name</h2>
 
 <p>
+
     @if (Model.ImageData != null)
     {
-        <img alt="@Model.Name" width="200" height="200" src="@Url.Action("GetImage", "Music", new { ID = Model.ID})" />
+        <img alt="@Model.Name" width="100" height="100" src="@Url.Action("GetImage", "Music", new { Id = Model.ID })" />
     }
     else
     {
 
-        <img alt="@Model.Name" src="/Content/Images/placeholder.gif" />
+        <img alt="@Model.Name" src="/Content/placeholder.gif" />
     }
+
 </p>
 
 <div id="album-details">
-    @*<p>
-        <em>Genre:</em>
-        @Model.GenreID
-    <p>*@
+ 
         <em>Artist:</em>
         @Model.Author
     </p>

@@ -27,28 +27,5 @@ namespace MusicStore.Domain.Entities
 
     }
 
-    //public void AddOrder(User user, ShippingDetail details, List<OrderItemModel> listOfOrderItems)
-    //{
-    //    Order order = new Order()
-    //    {
-    //        UserID = user.UserID,
-    //        ShipDetailsID = details.ShippingDetailsID,
-    //    };
-    //    _orderRepository.Add(order);
-    //    foreach(var item in listOfOrderItems)
-    //    {
-    //        OrderItem orderItem = new OrderItem()
-    //        {
-    //            SongID = item.SongID,
-    //            Quantity = item.Quantity,
-    //            OrderID = order.ID
-    //        };
-    //    }
-
-    //}
-    //public class OrderItemModel
-    //{
-    //    public int SongID { get; set; }
-    //    public int Quantity { get; set; }
-    //}
+    
 }

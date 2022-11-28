@@ -34,11 +34,10 @@ body
 	padding: 45px 0px 5px 0px;
 }
 
-#promotion
-{
-	height: 300px; 
-	width: 700px; 
-	background: url(/content/Images/home-showcase.png) no-repeat;
+#promotion {
+	height: 300px;
+	width: 700px;
+	background: url(\Content\home-showcase.png) no-repeat;
 }
 
 ul li a
