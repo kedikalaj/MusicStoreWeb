@@ -31,7 +31,23 @@ namespace MusicStoreWeb.Controllers
             if(song != null)
             {
                 model.Name = song.Name;
+                model.Genres = new SelectList(genresRepository.Genres, "Name", "ID");
             }
+
+           
+
+
+
+ // genresRepository.Genres.Select(c => new SelectListItem
+ // {
+ //     Text = c.Name,
+ //     Value = c.ID.ToString()
+ // }).OrderBy(c => c.Text).ToList(),
+ //"Value", "Text")
+ //);
+
+
+
             return View(model);
         }
         [HttpPost]

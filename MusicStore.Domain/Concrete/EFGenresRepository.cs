@@ -51,5 +51,18 @@ namespace MusicStore.Domain.Concrete
         {
             return Genres.Single(g => g.ID == id);
         }
+       public List<Genres> GetGenres()
+        {
+
+
+            List<Genres> genres = new List<Genres>();
+            foreach (var p in Genres)
+            {
+                new Genres() { ID = p.ID, Name = p.Name };
+            }
+
+            return genres;
+          
+        }
     }
 }

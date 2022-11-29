@@ -13,6 +13,8 @@ namespace MusicStore.Domain.Abstract
 
         Genres GetGenreById(int id);
 
+       List<Genres> GetGenres();
+
 
     }
 }

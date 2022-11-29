@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using MusicStore.Domain.Entities;
+using System.Web.Mvc;
 
 namespace MusicStore.Domain.Models
 {
@@ -21,5 +23,9 @@ namespace MusicStore.Domain.Models
         public int Length { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
+
+       
+        public SelectList Genres { get; set; }
+       
     }
 }

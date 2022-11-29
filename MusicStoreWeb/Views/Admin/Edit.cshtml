@@ -26,14 +26,16 @@
                     case "ID":
                     case "ImageData":
                     case "ImageMimeType":
+                    case "Genres":
                         // do nothing
                         break;
                     default:
                         <div class="form-group">
                             <label>@(property.DisplayName ?? property.PropertyName)</label>
-                            @if (property.PropertyName == "Genre")
+                            @if (property.PropertyName == "GenreID")
                             {
-                                //@Html.DropDownListFor(m => m.Genre, new SelectList(Enum.GetValues(typeof(Genrees))), "Select Genre")
+                                @Html.DropDownListFor(model => model.GenreID, Model.Genres, "-Please select-")
+                                @Html.ValidationMessageFor(model => model.GenreID, "", new { @class = "text-danger" })
                             }
                             else
                             {
