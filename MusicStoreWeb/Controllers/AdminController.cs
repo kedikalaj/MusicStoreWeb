@@ -31,7 +31,12 @@ namespace MusicStoreWeb.Controllers
             if(song != null)
             {
                 model.Name = song.Name;
-                model.Genres = new SelectList(genresRepository.Genres, "Name", "ID");
+                model.Genres = new SelectList(genresRepository.Genres.Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.ID.ToString()
+                })
+              .OrderBy(c => c.Text).ToList(), "Value", "Text");
             }
 
            
@@ -106,7 +111,14 @@ namespace MusicStoreWeb.Controllers
 
         public ViewResult Create()
         {
-            return View("Edit", new SongViewModel());
+            SongViewModel model = new SongViewModel();
+            model.Genres = new SelectList(genresRepository.Genres.Select(c => new SelectListItem
+            {
+                Text = c.Name,
+                Value = c.ID.ToString()
+            }));
+
+            return View("Edit", model);
         }
         public ViewResult CreateG()
         {

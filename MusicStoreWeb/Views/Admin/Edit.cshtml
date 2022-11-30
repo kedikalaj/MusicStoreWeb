@@ -27,6 +27,8 @@
                     case "ImageData":
                     case "ImageMimeType":
                     case "Genres":
+                  
+
                         // do nothing
                         break;
                     default:
@@ -34,8 +36,11 @@
                             <label>@(property.DisplayName ?? property.PropertyName)</label>
                             @if (property.PropertyName == "GenreID")
                             {
-                                @Html.DropDownListFor(model => model.GenreID, Model.Genres, "-Please select-")
-                                @Html.ValidationMessageFor(model => model.GenreID, "", new { @class = "text-danger" })
+                                @Html.TextBox(property.PropertyName, null,
+                                new { @class = "form-control" })
+
+                                @*@Html.DropDownListFor(model => model.GenreID, Model.Genres, "-Select a genre-", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.GenreID, null, new { @class = "text-danger message" })*@
                             }
                             else
                             {

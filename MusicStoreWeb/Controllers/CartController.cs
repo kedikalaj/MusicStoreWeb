@@ -51,23 +51,28 @@ namespace MusicStoreWeb.Controllers
         {
             return PartialView(cart);
         }
-        public ViewResult Checkout()
+        public ViewResult Checkout(Cart cart)
         {
 
             int ID = 1;
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
            .FirstOrDefault(p => p.ID == ID);
-  
 
-
-            if (detail != null)
+            CartIndexViewModel indexView = new CartIndexViewModel
             {
-                return View("FinalStep", detail);
+                shippingDetails = detail,
+                Cart = cart
+            };
+
+
+            if (indexView != null)
+            {
+                return View("FinalStep", indexView);
             }
 
             else
             {
-                return View(new ShippingDetail());
+                return View(new CartIndexViewModel());
             }
         }
         public ViewResult editShipping()
@@ -75,7 +80,7 @@ namespace MusicStoreWeb.Controllers
             int ID = 1;
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
            .FirstOrDefault(p => p.ID == ID);
-            return View("Checkout",new ShippingDetail());
+            return View("Checkout",detail);
         }
 
         [HttpPost]

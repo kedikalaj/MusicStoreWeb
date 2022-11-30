@@ -13,7 +13,7 @@ namespace SportsStore.WebUI.Controllers
     {
         private ISongsRepository repository;
         private IGenresRepository genresRepository;
-        public int PageSize = 6;
+        public int PageSize = 5;
         public MusicController(ISongsRepository productRepository, IGenresRepository genresRepository)
         {
             this.repository = productRepository;
