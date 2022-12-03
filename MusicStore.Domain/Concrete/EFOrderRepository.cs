@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
+using MusicStore.Domain.Models;
+
 
 namespace MusicStore.Domain.Concrete
 {
@@ -15,5 +17,34 @@ namespace MusicStore.Domain.Concrete
         {
             get { return context.Order; }
         }
+
+
+        public void CreateNewOrder(int UID, ChekoutModel model)
+        {
+
+             ShippingDetail sd = context.ShippingDetail.Find(UID);
+
+            if (model.Order == null) {
+               
+                
+                    Order dbEntry = new Order();
+                    dbEntry.UserID = UID;
+                    dbEntry.ShipDetailsID = sd.ID;
+                    context.Order.Add(dbEntry);
+                }
+                else
+                {
+                    Order dbEntry = context.Order.Find(model.Order.ID);
+                    dbEntry.UserID = UID;
+                    dbEntry.ShipDetailsID = sd.ID;
+
+                }
+                context.SaveChanges();
+
+
+        }
+
+
+
     }
 }

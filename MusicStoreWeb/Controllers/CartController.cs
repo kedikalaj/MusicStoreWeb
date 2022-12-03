@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Entities;
+using MusicStore.Domain.Models;
 using MusicStoreWeb.Models;
 
 namespace MusicStoreWeb.Controllers
@@ -12,11 +13,13 @@ namespace MusicStoreWeb.Controllers
         
         private IOrderProcessor orderProcessor;
         private IShippingDetailRepository shippingDetailRepository;
-        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail)
+        private IOrderRepository OrderRepository;
+        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail, IOrderRepository orderRepository)
         {
             repository = repo;
             orderProcessor = proc;
             shippingDetailRepository = sdetail;
+            OrderRepository = orderRepository;
         }
         public ViewResult Index(Cart cart, string returnUrl)
         {
@@ -77,7 +80,7 @@ namespace MusicStoreWeb.Controllers
         }
         public ViewResult editShipping()
         {
-            int ID = 1;
+            int ID = 2;
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
            .FirstOrDefault(p => p.ID == ID);
             return View("Checkout",detail);
@@ -113,15 +116,18 @@ namespace MusicStoreWeb.Controllers
             }
             else
             {
-
-
                 return View(detail);
-
-
-
             }
+        }
+
+        public ActionResult Finalise(ChekoutModel model)
+        {
+            int ID = 2;
 
 
+            OrderRepository.CreateNewOrder(ID, model);
+
+            return View("Finalised");
         }
 
     }
