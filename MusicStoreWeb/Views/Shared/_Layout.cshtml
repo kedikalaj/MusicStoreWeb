@@ -16,6 +16,7 @@
             type="text/javascript"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
     <style>
         .navbar-right {
             float: right !important;
@@ -33,17 +34,26 @@
             MUSIC STORE
         </h1>
         <ul id="navlist">
+
             <li class="first">
                 <a href="/"
                    id="current">Home</a>
             </li>
+
             <li>
                 <a href="/Admin/Index">Admin</a>
             </li>
+
             <li>
                 <a href="/Cart/Index">Cart</a>
             </li>
+
+            <li>
+               <button href="/User/UserLogin"> Account </button>
+            </li>
         </ul>
+
+        <button<a href="/Cart/Index"></a>></button>
     </div>
 
     <!--
@@ -61,7 +71,7 @@
 
 
     <div class="visible-xs">
-        @Html.Action("Menu", "Nav", new { horizontalLayout = true }) <!-- ---- -->
+        @Html.Action("Menu", "Nav", new { horizontalLayout = true })
     </div>
     <div class="row panel">
         <div class="col-sm-3 hidden-xs">

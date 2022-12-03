@@ -158,6 +158,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\MusicController.cs" />
     <Compile Include="Controllers\NavController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,6 +197,7 @@
     <Content Include="Views\Admin\ListGenres.cshtml" />
     <Content Include="Views\Cart\FinalStep.cshtml" />
     <Content Include="Views\Music\Details.cshtml" />
+    <Content Include="Views\User\UserLogin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

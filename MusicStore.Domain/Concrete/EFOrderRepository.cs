@@ -21,6 +21,7 @@ namespace MusicStore.Domain.Concrete
 
         public void CreateNewOrder(int UID, ChekoutModel model)
         {
+            
 
              ShippingDetail sd = context.ShippingDetail.Find(UID);
 
@@ -34,7 +35,8 @@ namespace MusicStore.Domain.Concrete
                 }
                 else
                 {
-                    Order dbEntry = context.Order.Find(model.Order.ID);
+                int OID = model.Order.ID;
+                    Order dbEntry = context.Order.Find(OID);
                     dbEntry.UserID = UID;
                     dbEntry.ShipDetailsID = sd.ID;
 
