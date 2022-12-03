@@ -57,7 +57,7 @@ namespace MusicStoreWeb.Controllers
         public ViewResult Checkout(Cart cart)
         {
 
-            int ID = 1;
+            int ID = 2;
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
            .FirstOrDefault(p => p.ID == ID);
 
@@ -80,7 +80,7 @@ namespace MusicStoreWeb.Controllers
         }
         public ViewResult editShipping()
         {
-            int ID = 2;
+            int ID = 1 ;
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
            .FirstOrDefault(p => p.ID == ID);
             return View("Checkout",detail);
@@ -104,25 +104,36 @@ namespace MusicStoreWeb.Controllers
                 return View(shippingDetails);
             }
         }
-        public ActionResult SaveShippingDetails(ShippingDetail detail)
+        public ActionResult SaveShippingDetails(Cart cart)
         {
+            int ID = 1;
+            ShippingDetail detail = shippingDetailRepository.ShippingDetail
+           .FirstOrDefault(p => p.ID == ID);
+
+            CartIndexViewModel indexView = new CartIndexViewModel
+            {
+                shippingDetails = detail,
+                Cart = cart
+            };
 
             if (ModelState.IsValid)
             {
 
+
                 shippingDetailRepository.SaveShippingDeatails(detail);
+
                 TempData["message"] = string.Format("Shipping details with id {0} has been saved", detail.ID);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(detail);
+                return View("FinalStep",detail);
             }
         }
 
         public ActionResult Finalise(ChekoutModel model)
         {
-            int ID = 2;
+            int ID = 4;
 
 
             OrderRepository.CreateNewOrder(ID, model);
