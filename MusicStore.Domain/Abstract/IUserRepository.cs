@@ -8,6 +8,7 @@ namespace MusicStore.Domain.Abstract
     {
         IEnumerable<User> User { get; }
 
-
+        void SaveUser(User user);
+        void Login(User user);
     }
 }

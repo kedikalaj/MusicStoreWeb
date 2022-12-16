@@ -15,5 +15,40 @@ namespace MusicStore.Domain.Concrete
         {
             get { return context.User; }
         }
+        public void Login(User user)
+        {
+            if(user != null)
+            {
+               
+
+            }
+     
+        }
+
+
+        public void SaveUser(User user) {
+
+            if (user.ID == 0)
+            {
+                user.RoleID = 2;
+                context.User.Add(user);
+            }
+
+            else
+            {
+             
+                User dbEntry = context.User.Find(user.ID);
+                if (dbEntry != null)
+                {
+                    dbEntry.Username = user.Username;
+                    dbEntry.Password = user.Password;
+                    dbEntry.RoleID = 2;
+
+                }
+
+            }
+            context.SaveChanges();
+
+        }
     }
 }
