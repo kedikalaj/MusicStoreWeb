@@ -26,7 +26,17 @@
 
 
 
-    <div class="btn-group pull-right">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
-        new { page = x, category = Model.CurrentCategory }))
-    </div>
+<div class="btn-group pull-right">
+    @for (int i = 1; i <= Model.PagingInfo.TotalPages; i++)
+    {
+        if (i == Model.PagingInfo.CurrentPage)
+        {
+            <a href="/@Model.CurrentCategory/@i" class="selected btn btn-primary">@i</a>
+        }
+        else
+        {
+            <a href="/@Model.CurrentCategory/@i" class="btn btn-default">@i</a>
+        }
+
+    }
+</div>
