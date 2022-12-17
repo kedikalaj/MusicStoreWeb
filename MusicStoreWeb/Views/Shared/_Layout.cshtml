@@ -25,10 +25,20 @@
         }
     </style>
 </head>
+@{ string value = " ";
+    if (Request.Cookies["username"] != null)
+    {
+        string value2 = Request.Cookies["username"].Value;
+        value = "Welcome " + value2;
 
+    }
+}
 <body>
+    <h1>@value</h1><br>
 
     <div id="header">
+
+
 
         <h1>
             MUSIC STORE
@@ -50,7 +60,7 @@
 
             <li>
                 <a href="User/UserLogin"><img src="~/Content/Img/img_454474.png" height="25" /> </a>
-               
+
             </li>
         </ul>
 

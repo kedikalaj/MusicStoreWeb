@@ -39,6 +39,18 @@ namespace MusicStoreWeb.Controllers
 
             TempData["message"] = string.Format("Welcome {0}", user.Username);
 
+
+            HttpCookie UserCookie = new HttpCookie("username", user.Username);
+            UserCookie.Expires.AddHours(3);
+            UserCookie.Values.Add("RoleID", user.RoleID);
+
+
+
+            HttpContext.Response.SetCookie(UserCookie);
+           
+
+
+
             return Redirect( Url.Action("List", "Music", user));
         }
         public ActionResult Register(User user)
