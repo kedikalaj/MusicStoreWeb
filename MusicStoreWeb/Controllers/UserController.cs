@@ -29,7 +29,7 @@ namespace MusicStoreWeb.Controllers
             return View();
         }
 
-        public ActionResult Login(User users, string returnUrl)
+        public ActionResult Login(User users)
         {
             string username = users.Username;
             string passwrd = users.Password;
@@ -37,7 +37,9 @@ namespace MusicStoreWeb.Controllers
             var user = userRepository.User
                .Where(p => p.Username == username && p.Password ==passwrd) .FirstOrDefault();
 
-            return Redirect(returnUrl ?? Url.Action("Index", "Admin", user));
+            TempData["message"] = string.Format("Welcome {0}", user.Username);
+
+            return Redirect( Url.Action("List", "Music", user));
         }
         public ActionResult Register(User user)
         {

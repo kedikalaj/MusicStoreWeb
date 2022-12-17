@@ -29,7 +29,7 @@
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
-                            @using (Html.BeginForm())
+                            @using (Html.BeginForm("Login", "User", FormMethod.Post))
                             {@Html.ValidationSummary()
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Sign In</h2>
@@ -38,7 +38,7 @@
 
                                     <div class="form-outline mb-4">
                                         @Html.TextBoxFor(p => p.Username, new { @class = "form-control form-control-lg" })
-                                        
+
                                         <label class="form-label">Username</label>
                                     </div>
 
@@ -49,9 +49,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center">
-                                        
-                                        @Html.ActionLink("Login", "Login", null, new {
-                                       @class = "btn btn-success btn-block btn-lg gradient-custom-4 text-body" })
+                                        <input type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" />
                                     </div>
 
                                 </form>
