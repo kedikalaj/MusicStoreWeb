@@ -129,6 +129,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\home-showcase.png" />
+    <Content Include="Content\Img\img_454474.png" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\placeholder.gif" />
     <Content Include="Content\Site.css" />
@@ -198,6 +199,7 @@
     <Content Include="Views\Cart\FinalStep.cshtml" />
     <Content Include="Views\Music\Details.cshtml" />
     <Content Include="Views\User\UserLogin.cshtml" />
+    <Content Include="Views\User\UserSignup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

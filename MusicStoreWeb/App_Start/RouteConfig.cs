@@ -33,10 +33,11 @@ namespace MusicStoreWeb
             new { controller = "Music", action = "List", page = 1 }
             );
             routes.MapRoute(null,
-            "{category}/Page{page}",
+            "{category}/{page}",
             new { controller = "Music", action = "List" },
             new { page = @"\d+" }
             );
+
             routes.MapRoute(null, "{controller}/{action}");
         }
     }

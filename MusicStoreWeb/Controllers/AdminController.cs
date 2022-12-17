@@ -30,7 +30,14 @@ namespace MusicStoreWeb.Controllers
             SongViewModel model = new SongViewModel();
             if(song != null)
             {
+                model.ID=song.ID;
                 model.Name = song.Name;
+                model.Author= song.Author;
+                model.Price= song.Price;
+                model.GenreID= song.GenreID;
+                model.Length= song.Length;
+                model.ImageMimeType= song.ImageMimeType;
+                model.ImageData= song.ImageData;
                 model.Genres = new SelectList(genresRepository.Genres.Select(c => new SelectListItem
                 {
                     Text = c.Name,
@@ -79,7 +86,6 @@ namespace MusicStoreWeb.Controllers
             }
         }
 
-    
         public ActionResult SaveGenre(Genres product)
         {
 
@@ -100,14 +106,16 @@ namespace MusicStoreWeb.Controllers
 
             
         }
-        public ViewResult EditGenre(int? ID)
+
+        public ViewResult EditG(int? ID)
         {
             Genres genres = genresRepository.Genres
             .FirstOrDefault(p => p.ID == ID);
-            return View(genres);
+            
+            return View("SaveGenre",genres);
         }
-       
-        
+
+
 
         public ViewResult Create()
         {
