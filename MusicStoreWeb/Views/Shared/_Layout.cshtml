@@ -25,7 +25,7 @@
         }
     </style>
 </head>
-@{ string value = " ";
+@{ string value = "";
     if (Request.Cookies["username"] != null)
     {
         string value2 = Request.Cookies["username"].Value;
@@ -59,7 +59,19 @@
             </li>
 
             <li>
-                <a href="User/UserLogin"><img src="~/Content/Img/img_454474.png" height="25" /> </a>
+
+                @{
+                    if (value == "")
+                    {
+                        <a href="https://localhost:44315/User/UserLogin"><img src="~/Content/Img/img_454474.png" height="25" /> </a>
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Logout", "Logout", "User")
+                    }
+                }
+
+
 
             </li>
         </ul>

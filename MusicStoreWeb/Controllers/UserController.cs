@@ -53,6 +53,9 @@ namespace MusicStoreWeb.Controllers
 
             return Redirect( Url.Action("List", "Music", user));
         }
+
+        HttpCookie UserCookie;
+
         public ActionResult Register(User user)
         {
             List<string> usernames = userRepository.GetUser();
@@ -69,7 +72,7 @@ namespace MusicStoreWeb.Controllers
             {
                 userRepository.SaveUser(user);
 
-                HttpCookie UserCookie = new HttpCookie("username", user.Username);
+                UserCookie = new HttpCookie("username", user.Username);
                 UserCookie.Expires.AddHours(3);
 
                 HttpContext.Response.SetCookie(UserCookie);
@@ -82,6 +85,15 @@ namespace MusicStoreWeb.Controllers
 
 
 
+
+            return Redirect(Url.Action("List", "Music", new { }));
+        }
+        public ActionResult Logout()
+        {
+            if (Request.Cookies["username"] != null)
+            {
+                Response.Cookies["username"].Expires = DateTime.Now.AddDays(-1);
+            }
 
             return Redirect(Url.Action("List", "Music", new { }));
         }
