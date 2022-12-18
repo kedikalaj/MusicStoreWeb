@@ -15,18 +15,20 @@ namespace MusicStore.Domain.Concrete
         {
             get { return context.User; }
         }
-        public void Login(User user)
+
+        public List<string> GetUser()
         {
-            if(user != null)
-            {
-               
-
-            }
-     
+            List<string> Names = context
+                     .User
+                    .Where(u => u.ID > 0)
+                    .Select(u => u.Username)
+                    .ToList();
+            return Names;
         }
+       
 
 
-        public void SaveUser(User user) {
+            public void SaveUser(User user) {
 
             if (user.ID == 0)
             {

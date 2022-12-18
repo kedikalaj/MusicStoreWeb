@@ -7,7 +7,7 @@ using MusicStore.Domain.Entities;
 using MusicStore.Domain.Abstract;
 using MusicStore.Domain.Models;
 using MusicStoreWeb.Models;
-
+using System.Web.UI;
 
 namespace MusicStoreWeb.Controllers
 {
@@ -42,7 +42,7 @@ namespace MusicStoreWeb.Controllers
 
             HttpCookie UserCookie = new HttpCookie("username", user.Username);
             UserCookie.Expires.AddHours(3);
-            UserCookie.Values.Add("RoleID", user.RoleID);
+            
 
 
 
@@ -55,13 +55,37 @@ namespace MusicStoreWeb.Controllers
         }
         public ActionResult Register(User user)
         {
+            List<string> usernames = userRepository.GetUser();
+            bool nonRepeated = true;
+            foreach (string p in usernames)
+            {
+                if(p == user.Username)
+                {
+                    nonRepeated = false;
+                }
+            }
 
-            userRepository.SaveUser(user);
-           
-            TempData["message"] = string.Format("Wellcome, {0}", user.Username);
-            
+            if (nonRepeated)
+            {
+                userRepository.SaveUser(user);
+
+                HttpCookie UserCookie = new HttpCookie("username", user.Username);
+                UserCookie.Expires.AddHours(3);
+
+                HttpContext.Response.SetCookie(UserCookie);
+            }
+            else
+            {
+                //alert showing that the username already exists
+            }
+          
+
+
+
 
             return Redirect(Url.Action("List", "Music", new { }));
         }
+
     }
+
 }
