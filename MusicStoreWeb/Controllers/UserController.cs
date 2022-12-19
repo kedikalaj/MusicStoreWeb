@@ -44,7 +44,10 @@ namespace MusicStoreWeb.Controllers
                
                 TempData["message"] = string.Format("Welcome {0}", user.Username);
 
-                HttpCookie UserCookie = new HttpCookie("username", user.Username);
+                HttpCookie UserCookie = new HttpCookie("fatcookie");
+                UserCookie.Values.Add("username", user.Username.ToString());
+                UserCookie.Values.Add("ID", user.ID.ToString());
+
                 UserCookie.Expires.AddHours(3);
 
                 HttpContext.Response.SetCookie(UserCookie);
@@ -53,7 +56,9 @@ namespace MusicStoreWeb.Controllers
             else
             { 
                 
-                HttpCookie UserCookie = new HttpCookie("username", user.Username);
+                HttpCookie UserCookie = new HttpCookie("fatcookie");
+                UserCookie.Values.Add("username", user.Username.ToString());
+                UserCookie.Values.Add("ID", user.ID.ToString());
                 UserCookie.Expires.AddHours(3);
 
                 HttpContext.Response.SetCookie(UserCookie);

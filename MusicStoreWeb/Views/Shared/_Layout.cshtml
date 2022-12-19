@@ -26,9 +26,9 @@
     </style>
 </head>
 @{ string value = "";
-    if (Request.Cookies["username"] != null)
+    if (Request.Cookies["fatcookie"] != null)
     {
-        string value2 = Request.Cookies["username"].Value;
+        string value2 = Request.Cookies["fatcookie"]["username"];
         value = "Welcome " + value2;
 
     }
