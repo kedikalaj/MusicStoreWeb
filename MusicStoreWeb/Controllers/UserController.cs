@@ -35,23 +35,32 @@ namespace MusicStoreWeb.Controllers
             string passwrd = users.Password;
 
             var user = userRepository.User
-               .Where(p => p.Username == username && p.Password ==passwrd) .FirstOrDefault();
-
-            TempData["message"] = string.Format("Welcome {0}", user.Username);
-
-
-            HttpCookie UserCookie = new HttpCookie("username", user.Username);
-            UserCookie.Expires.AddHours(3);
-            
-
-
-
-            HttpContext.Response.SetCookie(UserCookie);
+              .Where(p => p.Username == username && p.Password == passwrd).FirstOrDefault();
            
+            int rid = user.RoleID;
 
+            if (rid==1)
+            {
+               
+                TempData["message"] = string.Format("Welcome {0}", user.Username);
 
+                HttpCookie UserCookie = new HttpCookie("username", user.Username);
+                UserCookie.Expires.AddHours(3);
 
-            return Redirect( Url.Action("List", "Music", user));
+                HttpContext.Response.SetCookie(UserCookie);
+                return Redirect(Url.Action("Index", "Admin", user));
+            }
+            else
+            { 
+                
+                HttpCookie UserCookie = new HttpCookie("username", user.Username);
+                UserCookie.Expires.AddHours(3);
+
+                HttpContext.Response.SetCookie(UserCookie);
+                return Redirect(Url.Action("List", "Music", user));
+                
+            }
+            
         }
 
         HttpCookie UserCookie;
