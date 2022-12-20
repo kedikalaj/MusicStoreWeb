@@ -9,7 +9,7 @@ using MusicStore.Domain.Models;
 
 namespace MusicStoreWeb.Controllers
 {
-    [Authorize]
+  //  [Authorize]
     public class AdminController : Controller
     {
         private ISongsRepository repository;
@@ -38,12 +38,11 @@ namespace MusicStoreWeb.Controllers
                 model.Length= song.Length;
                 model.ImageMimeType= song.ImageMimeType;
                 model.ImageData= song.ImageData;
-                model.Genres = new SelectList(genresRepository.Genres.Select(c => new SelectListItem
+                model.Genres = genresRepository.Genres.Select(c => new SelectListItem
                 {
                     Text = c.Name,
                     Value = c.ID.ToString()
-                })
-              .OrderBy(c => c.Text).ToList(), "Value", "Text");
+                }).OrderBy(c => c.Text).ToList();
             }
 
            
@@ -120,11 +119,11 @@ namespace MusicStoreWeb.Controllers
         public ViewResult Create()
         {
             SongViewModel model = new SongViewModel();
-            model.Genres = new SelectList(genresRepository.Genres.Select(c => new SelectListItem
+            model.Genres = genresRepository.Genres.Select(c => new SelectListItem
             {
                 Text = c.Name,
                 Value = c.ID.ToString()
-            }));
+            }).OrderBy(c => c.Text).ToList();
 
             return View("Edit", model);
         }

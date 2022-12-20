@@ -36,11 +36,10 @@
                             <label>@(property.DisplayName ?? property.PropertyName)</label>
                             @if (property.PropertyName == "GenreID")
                             {
-                                @Html.TextBox(property.PropertyName, null,
-                                new { @class = "form-control" })
+                                @Html.DropDownListFor(Model => Model.GenreID, new SelectList(Model.Genres, "Value", "Text"), null, new { @class = "form-control" })
 
                                 @*@Html.DropDownListFor(model => model.GenreID, Model.Genres, "-Select a genre-", new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.GenreID, null, new { @class = "text-danger message" })*@
+            @Html.ValidationMessageFor(model => model.GenreID, null, new { @class = "text-danger message" })*@
                             }
                             else
                             {
