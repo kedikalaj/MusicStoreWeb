@@ -5,7 +5,7 @@
 <p>Please enter your details, and we'll ship your goods right away!</p>
 
 
-@using (Html.BeginForm("Checkout", "Cart", FormMethod.Post))
+@using (Html.BeginForm("newShippingDetails", "Cart", FormMethod.Post))
 {
     string value = "";
 
@@ -16,6 +16,7 @@
 
     }
 
+
     <h3>Ship to</h3>
     <div class="form-group">
         <label>Name:</label>
@@ -24,8 +25,10 @@
     </div>
 
     <h3>Address</h3>
-    <div class="form-group">
 
+
+    <div class="form-group">
+        <label>Line1</label>
         @Html.TextBoxFor(model => model.Name, new { @Value = value, @type = "hidden" })
     </div>
 
@@ -69,12 +72,11 @@
     </div>
 
     <div class="text-center">
-        
-            <input type="submit" value="Complete order" />
-        
 
-       
-
+        <a href="/">
+            <input class="btn btn-primary" type="submit" value="Complete order" />
+        </a>
     </div>
+
 
 }

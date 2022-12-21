@@ -14,12 +14,14 @@ namespace MusicStoreWeb.Controllers
         private IOrderProcessor orderProcessor;
         private IShippingDetailRepository shippingDetailRepository;
         private IOrderRepository OrderRepository;
-        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail, IOrderRepository orderRepository)
+        private IUserRepository UserRepository;
+        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail, IOrderRepository orderRepository, IUserRepository userRepository)
         {
             repository = repo;
             orderProcessor = proc;
             shippingDetailRepository = sdetail;
             OrderRepository = orderRepository;
+            UserRepository = userRepository;
         }
         public ViewResult Index(Cart cart, string returnUrl)
         {
@@ -57,9 +59,24 @@ namespace MusicStoreWeb.Controllers
         public ViewResult Checkout(Cart cart)
         {
 
-            int ID = 2;
+            string value = "";
+
+            if (Request.Cookies["fatcookie"] != null)
+            {
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
+            }
+
+            var user = UserRepository.User
+            .Where(p => p.Username == value).FirstOrDefault();
+
+            int ID = user.ID;
+
+
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
-           .FirstOrDefault(p => p.ID == ID);
+           .LastOrDefault(p => p.ID == ID);
+           
 
             CartIndexViewModel indexView = new CartIndexViewModel
             {
@@ -68,47 +85,153 @@ namespace MusicStoreWeb.Controllers
             };
 
 
-            if (indexView != null)
+            if (detail != null)
             {
                 return View("FinalStep", indexView);
             }
 
             else
             {
-                return View(new CartIndexViewModel());
+                return View(new ShippingDetail());
             }
+        }
+        public ViewResult newShippingDetails(ShippingDetail detail)
+        {
+            string value = "";
+
+            if (Request.Cookies["fatcookie"] != null)
+            {
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
+            }
+
+            var user = UserRepository.User
+            .Where(p => p.Username == value).FirstOrDefault();
+
+            int ID = user.ID;
+
+
+            if (ModelState.IsValid)
+            {
+
+
+                shippingDetailRepository.SaveShippingDeatails(detail);
+
+            }
+
+            return View("Checkout");
+            
+          
         }
         public ViewResult editShipping()
         {
-            int ID = 1 ;
-            ShippingDetail detail = shippingDetailRepository.ShippingDetail
-           .FirstOrDefault(p => p.ID == ID);
-            return View("Checkout",detail);
+
+
+            string value = "";
+
+            if (Request.Cookies["fatcookie"] != null)
+            {
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
+            }
+
+            var user = UserRepository.User
+            .Where(p => p.Username == value).FirstOrDefault();
+
+            string name = user.Username;
+
+
+            ShippingDetail detail = shippingDetailRepository.ShippingDetail.LastOrDefault(p => p.Name== name);
+
+            
+
+            return View("Checkout", detail);
         }
 
         [HttpPost]
-        public ViewResult Checkout(Cart cart, ShippingDetail shippingDetails)
+        public ViewResult Checkout(Cart cart, ShippingDetail detail)
         {
-            if (cart.Lines.Count() == 0)
+
+
+            string value = "";
+
+            if (Request.Cookies["fatcookie"] != null)
             {
-                ModelState.AddModelError("", "Sorry, your cart is empty!");
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
             }
-            if (ModelState.IsValid)
+
+
+            CartIndexViewModel indexView = new CartIndexViewModel
             {
-                orderProcessor.ProcessOrder(cart, shippingDetails);
-                cart.Clear();
-                return View("Completed");
+                shippingDetails = detail,
+                Cart = cart
+            };
+
+
+            if (detail != null && ModelState.IsValid)
+            {
+                shippingDetailRepository.SaveShippingDeatails(detail);
+                return View("FinalStep", indexView);
             }
+
             else
             {
-                return View(shippingDetails);
+                return View(new ShippingDetail());
             }
+
+
         }
-        public ActionResult SaveShippingDetails(Cart cart)
+        //    public ViewResult Checkout(Cart cart, ShippingDetail shippingDetails)
+        //{
+        //    if (cart.Lines.Count() == 0)
+        //    {
+        //        ModelState.AddModelError("", "Sorry, your cart is empty!");
+        //    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        orderProcessor.ProcessOrder(cart, shippingDetails);
+        //        cart.Clear();
+        //        return View("Completed");
+        //    }
+        //    else
+        //    {
+        //        return View(shippingDetails);
+        //    }
+        //}
+        
+        public ActionResult SaveShippingDetails(Cart cart, ShippingDetail shippingDetails)
         {
-            int ID = 1;
+            
+
+
+            string value = "";
+
+            if (Request.Cookies["fatcookie"] != null)
+            {
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
+            }
+
+            var user = UserRepository.User
+            .Where(p => p.Username == value).FirstOrDefault();
+
+            int ID = user.ID;
+
+
+
+
             ShippingDetail detail = shippingDetailRepository.ShippingDetail
-           .FirstOrDefault(p => p.ID == ID);
+           .LastOrDefault(p => p.ID == ID);
+
+            if (detail == null)
+            {
+                detail = shippingDetails;
+            }
 
             CartIndexViewModel indexView = new CartIndexViewModel
             {
@@ -127,18 +250,62 @@ namespace MusicStoreWeb.Controllers
             }
             else
             {
-                return View("FinalStep",detail);
+                return View("FinalStep", indexView);
             }
         }
 
         public ActionResult Finalise(ChekoutModel model)
         {
-            int ID = 4;
+           
 
+
+            string value = "";
+            
+            if (Request.Cookies["fatcookie"] != null)
+            {
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
+            }
+
+            var user = UserRepository.User
+            .Where(p => p.Username == value).FirstOrDefault();
+
+            int ID = user.ID;
 
             OrderRepository.CreateNewOrder(ID, model);
 
             return View("Finalised");
+        }
+        public ActionResult detailExists(Cart cart)
+        {
+            string value = "";
+
+            if (Request.Cookies["fatcookie"] != null)
+            {
+                string value2 = Request.Cookies["fatcookie"]["username"];
+                value = value2;
+
+            }
+
+            var userd = shippingDetailRepository.ShippingDetail.Where(m => m.Name == value).FirstOrDefault(); ;
+
+            CartIndexViewModel indexView = new CartIndexViewModel
+            {
+                shippingDetails = userd,
+                Cart = cart
+            };
+
+            if (userd== null)
+            {
+                return RedirectToAction("newShippingDetails", new ShippingDetail());
+              
+            }
+            else
+            {
+
+                return View("FinalStep", indexView);
+            }
         }
 
     }

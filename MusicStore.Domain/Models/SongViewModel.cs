@@ -25,7 +25,7 @@ namespace MusicStore.Domain.Models
         public string ImageMimeType { get; set; }
 
        
-        public SelectList Genres { get; set; }
+        public List<SelectListItem> Genres { get; set; }
        
     }
 }

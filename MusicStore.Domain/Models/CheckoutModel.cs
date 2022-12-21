@@ -10,6 +10,7 @@ namespace MusicStore.Domain.Models
         public Cart Cart { get; set; }
         public ShippingDetail shippingDetails { get; set; }
         public Order Order { get; set; }
+        public User User { get; set; }
 
 
     }
