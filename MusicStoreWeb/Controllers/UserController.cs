@@ -36,7 +36,10 @@ namespace MusicStoreWeb.Controllers
 
             var user = userRepository.User
               .Where(p => p.Username == username && p.Password == passwrd).FirstOrDefault();
-           
+            if (user!=null)
+            {
+
+            
             int rid = user.RoleID;
 
             if (rid==1)
@@ -47,8 +50,10 @@ namespace MusicStoreWeb.Controllers
                 HttpCookie UserCookie = new HttpCookie("fatcookie");
                 UserCookie.Values.Add("username", user.Username.ToString());
                 UserCookie.Values.Add("ID", user.ID.ToString());
+                UserCookie.Values.Add("RID", user.RoleID.ToString());
+                   
 
-                UserCookie.Expires.AddHours(3);
+                    UserCookie.Expires.AddHours(3);
 
                 HttpContext.Response.SetCookie(UserCookie);
                 return Redirect(Url.Action("Index", "Admin", user));
@@ -65,7 +70,8 @@ namespace MusicStoreWeb.Controllers
                 return Redirect(Url.Action("List", "Music", user));
                 
             }
-            
+            }
+            else { return Redirect(Url.Action("List", "Music")); }
         }
 
         HttpCookie UserCookie;
@@ -86,7 +92,9 @@ namespace MusicStoreWeb.Controllers
             {
                 userRepository.SaveUser(user);
 
-                UserCookie = new HttpCookie("username", user.Username);
+                HttpCookie UserCookie = new HttpCookie("fatcookie");
+                UserCookie.Values.Add("username", user.Username.ToString());
+                UserCookie.Values.Add("ID", user.ID.ToString());
                 UserCookie.Expires.AddHours(3);
 
                 HttpContext.Response.SetCookie(UserCookie);
@@ -104,9 +112,9 @@ namespace MusicStoreWeb.Controllers
         }
         public ActionResult Logout()
         {
-            if (Request.Cookies["username"] != null)
+            if (Request.Cookies["fatcookie"] != null)
             {
-                Response.Cookies["username"].Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies["fatcookie"].Expires = DateTime.Now.AddDays(-1);
             }
 
             return Redirect(Url.Action("List", "Music", new { }));

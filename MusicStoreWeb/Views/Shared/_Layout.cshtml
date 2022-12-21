@@ -26,8 +26,11 @@
     </style>
 </head>
 @{ string value = "";
+    string rid = "";
     if (Request.Cookies["fatcookie"] != null)
     {
+        string r= Request.Cookies["fatcookie"]["RID"];
+        rid = r;
         string value2 = Request.Cookies["fatcookie"]["username"];
         value = "Welcome " + value2;
 
@@ -49,11 +52,6 @@
                 <a href="/"
                    id="current">Home</a>
             </li>
-
-            <li>
-                <a href="/Admin/Index">Admin</a>
-            </li>
-
             <li>
                 <a href="/Cart/Index">Cart</a>
             </li>
@@ -61,7 +59,14 @@
             <li>
 
                 @{
-                    if (value == "")
+
+
+                    if (rid == "1")
+                    {
+                        <a href="https://localhost:44315/Admin/Index">Admin</a>
+                        @Html.ActionLink("Logout", "Logout", "User")
+                    }
+                    else if (value == "")
                     {
                         <a href="https://localhost:44315/User/UserLogin"><img src="~/Content/Img/img_454474.png" height="25" /> </a>
                     }

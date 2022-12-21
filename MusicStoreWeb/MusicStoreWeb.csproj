@@ -200,6 +200,7 @@
     <Content Include="Views\Music\Details.cshtml" />
     <Content Include="Views\User\UserLogin.cshtml" />
     <Content Include="Views\User\UserSignup.cshtml" />
+    <Content Include="Views\Cart\newShippingDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
