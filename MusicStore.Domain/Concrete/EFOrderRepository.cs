@@ -19,11 +19,11 @@ namespace MusicStore.Domain.Concrete
         }
 
 
-        public void CreateNewOrder(int UID, ChekoutModel model)
+        public void CreateNewOrder(int ShipID,int UID, CartViewModel model)
         {
             
 
-             ShippingDetail sd = context.ShippingDetail.Find(UID);
+             ShippingDetail sd = context.ShippingDetail.Find(ShipID);
 
             if (model.Order == null) {
                

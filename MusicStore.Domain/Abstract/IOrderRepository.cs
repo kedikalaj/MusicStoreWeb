@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MusicStore.Domain.Entities;
 using MusicStore.Domain.Models;
+
 using System.Data.Entity;
 
 namespace MusicStore.Domain.Abstract
@@ -9,6 +10,6 @@ namespace MusicStore.Domain.Abstract
     {
         IEnumerable<Order> Order { get; }
 
-       void CreateNewOrder(int UID, ChekoutModel model);
+       void CreateNewOrder(int ShipID, int UID, CartViewModel model);
     }
 }

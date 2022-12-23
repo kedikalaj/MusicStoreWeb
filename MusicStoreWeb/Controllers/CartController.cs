@@ -185,24 +185,7 @@ namespace MusicStoreWeb.Controllers
 
 
         }
-        //    public ViewResult Checkout(Cart cart, ShippingDetail shippingDetails)
-        //{
-        //    if (cart.Lines.Count() == 0)
-        //    {
-        //        ModelState.AddModelError("", "Sorry, your cart is empty!");
-        //    }
-        //    if (ModelState.IsValid)
-        //    {
-        //        orderProcessor.ProcessOrder(cart, shippingDetails);
-        //        cart.Clear();
-        //        return View("Completed");
-        //    }
-        //    else
-        //    {
-        //        return View(shippingDetails);
-        //    }
-        //}
-        
+
         public ActionResult SaveShippingDetails(Cart cart, ShippingDetail shippingDetails)
         {
             
@@ -254,10 +237,12 @@ namespace MusicStoreWeb.Controllers
             }
         }
 
-        public ActionResult Finalise(ChekoutModel model)
-        {
-           
 
+
+        public ActionResult Finalise(Cart cart)
+        {
+
+            
 
             string value = "";
             
@@ -268,12 +253,28 @@ namespace MusicStoreWeb.Controllers
 
             }
 
+
             var user = UserRepository.User
             .Where(p => p.Username == value).FirstOrDefault();
 
-            int ID = user.ID;
+            var shiping = shippingDetailRepository.ShippingDetail.Where(p => p.Name == value).LastOrDefault();
+            int SID = shiping.ID;
 
-            OrderRepository.CreateNewOrder(ID, model);
+            int UID = user.ID;
+
+            CartViewModel model = new CartViewModel
+            {
+                Cart = cart,
+                shippingDetails = shiping
+
+            };
+
+            foreach (var song in model.Cart.Lines)
+            {
+                OrderRepository.CreateNewOrder(SID, UID, model);
+            }
+
+            
 
             return View("Finalised");
         }
@@ -306,6 +307,16 @@ namespace MusicStoreWeb.Controllers
 
                 return View("FinalStep", indexView);
             }
+
+
+            
+            }
+
+        public ActionResult OrderSongs(Cart cart)
+        {
+
+
+            return View();
         }
 
     }
