@@ -10,18 +10,19 @@ namespace MusicStoreWeb.Controllers
     public class CartController : Controller
     {
         private ISongsRepository repository;
-        
+        private IOrderItemRepository orderItemRepository;
         private IOrderProcessor orderProcessor;
         private IShippingDetailRepository shippingDetailRepository;
         private IOrderRepository OrderRepository;
         private IUserRepository UserRepository;
-        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail, IOrderRepository orderRepository, IUserRepository userRepository)
+        public CartController(ISongsRepository repo, IOrderProcessor proc, IShippingDetailRepository sdetail, IOrderRepository orderRepository, IUserRepository userRepository, IOrderItemRepository orderItemRepository)
         {
             repository = repo;
             orderProcessor = proc;
             shippingDetailRepository = sdetail;
             OrderRepository = orderRepository;
             UserRepository = userRepository;
+            this.orderItemRepository = orderItemRepository;
         }
         public ViewResult Index(Cart cart, string returnUrl)
         {
@@ -269,10 +270,12 @@ namespace MusicStoreWeb.Controllers
 
             };
 
-            foreach (var song in model.Cart.Lines)
-            {
-                OrderRepository.CreateNewOrder(SID, UID, model);
-            }
+          
+            OrderRepository.CreateNewOrder(SID, UID, model);
+
+            Order neworder = OrderRepository.Order.LastOrDefault(p => p.UserID == UID);
+
+            orderItemRepository.AddOrder(neworder.ID, model);
 
             
 

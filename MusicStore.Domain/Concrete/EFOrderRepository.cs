@@ -13,6 +13,8 @@ namespace MusicStore.Domain.Concrete
     public class EFOrderRepository : IOrderRepository
     {
         public EFDbContext context = new EFDbContext();
+
+        private IOrderItemRepository OrderRepository;
         public IEnumerable<Order> Order
         {
             get { return context.Order; }
@@ -31,7 +33,10 @@ namespace MusicStore.Domain.Concrete
                     Order dbEntry = new Order();
                     dbEntry.UserID = UID;
                     dbEntry.ShipDetailsID = sd.ID;
+                
                     context.Order.Add(dbEntry);
+
+
                 }
                 else
                 {

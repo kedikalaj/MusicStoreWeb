@@ -9,5 +9,6 @@ namespace MusicStore.Domain.Models
         public ShippingDetail shippingDetails { get; set; }
 
         public Order Order { get; set; }
+        public OrderItem OrderItem { get; set; }
     }
 }
