@@ -300,6 +300,14 @@ namespace MusicStoreWeb.Controllers
                 Cart = cart
             };
 
+            var s = cart.Lines.FirstOrDefault();
+
+
+            if (s == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else { 
             if (userd== null)
             {
                 return RedirectToAction("newShippingDetails", new ShippingDetail());
@@ -310,10 +318,10 @@ namespace MusicStoreWeb.Controllers
 
                 return View("FinalStep", indexView);
             }
-
-
-            
             }
+
+
+        }
 
         public ActionResult OrderSongs(Cart cart)
         {
