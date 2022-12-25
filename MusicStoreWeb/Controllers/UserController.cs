@@ -15,9 +15,11 @@ namespace MusicStoreWeb.Controllers
     {
 
        IUserRepository userRepository;
-        public UserController(IUserRepository userRepo)
+        ISongsRepository songsRepository;
+        public UserController(IUserRepository userRepo, ISongsRepository songsRepository)
         {
             userRepository = userRepo;
+            this.songsRepository = songsRepository;
         }
 
         public ActionResult UserSignup()
@@ -110,12 +112,42 @@ namespace MusicStoreWeb.Controllers
 
             return Redirect(Url.Action("List", "Music", new { }));
         }
-        public ActionResult Logout()
+        public ActionResult Logout(Cart cart)
         {
             if (Request.Cookies["fatcookie"] != null)
             {
                 Response.Cookies["fatcookie"].Expires = DateTime.Now.AddDays(-1);
             }
+           
+            if (cart != null) {
+
+                try
+                {
+                    foreach (var s in cart.Lines)
+                    {
+
+
+                        int ID = s.Product.ID;
+                        Songs product = songsRepository.Songs
+                        .FirstOrDefault(p => p.ID == ID);
+                        if (product != null)
+                        {
+                            cart.RemoveLine(product);
+                        }
+
+
+                    }
+                }
+                catch
+                {
+
+                }
+               
+            
+            
+            }
+           
+
 
             return Redirect(Url.Action("List", "Music", new { }));
         }
