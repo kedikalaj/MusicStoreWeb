@@ -9,6 +9,21 @@
           type="text/css" />
 </head>
 
+
+@{ string value = "";
+    string rid = "";
+    if (Request.Cookies["fatcookie"] != null)
+    {
+        string r = Request.Cookies["fatcookie"]["RID"];
+        rid = r;
+        string value2 = Request.Cookies["fatcookie"]["username"];
+        value = value2;
+
+    }
+}
+
+
+
 <h2>@Model.Name</h2>
 
 <p>
@@ -26,16 +41,26 @@
 </p>
 
 <div id="album-details">
- 
-        <em>Artist:</em>
-        @Model.Author
+
+    <em>Artist:</em>
+    @Model.Author
     </p>
     <p>
         <em>Price:</em>
         @String.Format("{0:F}", Model.Price)
     </p>
     <p class="button">
-        @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { ID = Model.ID }, null)
+        @{
+            if (value == "")
+            {
+              <a href="/">Add to cart</a>
+            }
+            else
+            {
+                @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { ID = Model.ID }, null)
+            }
+        }
+       
 
 
     </p>

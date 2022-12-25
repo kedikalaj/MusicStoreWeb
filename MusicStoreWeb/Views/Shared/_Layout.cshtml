@@ -32,12 +32,11 @@
         string r= Request.Cookies["fatcookie"]["RID"];
         rid = r;
         string value2 = Request.Cookies["fatcookie"]["username"];
-        value = "Welcome " + value2;
+        value = "Signed as  " + value2;
 
     }
 }
 <body>
-    <h1>@value</h1><br>
 
     <div id="header">
 
@@ -48,13 +47,14 @@
         </h1>
         <ul id="navlist">
 
+            <li class="top"><h3>@value</h3></li>
+
+
             <li class="first">
                 <a href="/"
                    id="current">Home</a>
             </li>
-            <li>
-                <a href="/Cart/Index">Cart</a>
-            </li>
+
 
             <li>
 
@@ -69,9 +69,15 @@
                     else if (value == "")
                     {
                         <a href="https://localhost:44315/User/UserLogin"><img src="~/Content/Img/img_454474.png" height="25" /> </a>
+
+
+
+
                     }
                     else
                     {
+                        <a href="/Cart/Index">Cart</a>
+
                         @Html.ActionLink("Logout", "Logout", "User")
                     }
                 }
@@ -79,7 +85,7 @@
 
 
             </li>
-        </ul>
+            </ul>
 
         <button<a href="/Cart/Index"></a></button>
     </div>
