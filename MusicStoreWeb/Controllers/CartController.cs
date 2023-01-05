@@ -42,7 +42,10 @@ namespace MusicStoreWeb.Controllers
             }
             return RedirectToAction("Index", new { returnUrl });
         }
-        public RedirectToRouteResult RemoveFromCart(Cart cart, int ID, string returnUrl)
+
+
+        [HttpPost]
+        public ActionResult RemoveFromCart(Cart cart, int ID, string returnUrl)
         {
             Songs product = repository.Songs
             .FirstOrDefault(p => p.ID == ID);
@@ -51,7 +54,12 @@ namespace MusicStoreWeb.Controllers
                 cart.RemoveLine(product);
             }
 
-            return RedirectToAction("Index", new { returnUrl });
+            CartIndexViewModel model = new CartIndexViewModel
+            {
+                Cart = cart,
+                ReturnUrl = returnUrl
+            };
+            return PartialView("Recipt", model);
         }
         public PartialViewResult Summary(Cart cart)
         {
